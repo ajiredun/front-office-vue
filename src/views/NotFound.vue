@@ -1,5 +1,5 @@
 <template>
-    <div class="notFound">
+    <div class="NotFound">
         <img alt="Vue logo" src="../assets/logo.png">
         <h1>This route does not exist</h1>
     </div>
@@ -7,7 +7,14 @@
 
 <script>
     export default {
-        name: 'notFound',
+        name: 'NotFound',
+        data: () => {
+            let params = this.$route.params
+            console.log(params)
+            return {
+                params: params,
+            };
+        },
         components: {
 
         }
