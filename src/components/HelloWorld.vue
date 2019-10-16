@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h2>{{this.$store.state.siteName}}</h2>
+    <h3>{{this.$store.state.boUrl}}</h3>
+    <h3>{{this.$store.state.boApiUrl}}</h3>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the

@@ -11,6 +11,9 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'home',
+  mounted() {
+    this.$store.dispatch('loadVisualPack')
+  },
   components: {
     HelloWorld
   }
