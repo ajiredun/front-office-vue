@@ -9,10 +9,8 @@
     export default {
         name: 'NotFound',
         data: () => {
-            let params = this.$route.params
-            console.log(params)
             return {
-                params: params,
+
             };
         },
         components: {

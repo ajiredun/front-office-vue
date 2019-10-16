@@ -7,8 +7,12 @@ Vue.use(Vuex, axios)
 export default new Vuex.Store({
   state: {
       siteName: "Rush Front Office",
-      boUrl: "https://back.dev.ajiredun.com/",
-      boApiUrl: "https://back.dev.ajiredun.com/api/",
+      backOfficeUrl: "https://back.dev.ajiredun.com/",
+      api: {
+          backOffice : "https://back.dev.ajiredun.com/api/",
+          //visualPacks : this.state.api.backOffice + "visual_packs",
+          //visualPackActive : this.state.api.backOffice + "visual_packs?active=true",
+      },
       visualPack: null,
       layout: null,
       slots:[]
@@ -18,10 +22,12 @@ export default new Vuex.Store({
   },
   actions: {
       loadVisualPack() {
-          axios.get(this.state.boApiUrl+'visual_packs').then((response) => {
-              console.log(response)
-          })
-          console.log(this.state.boApiUrl+'visual_packs')
+          /*axios.get(this.state.boApiUrl+'visual_packs').then((response) => {
+              let status = response.status
+              if (status == 200) {
+
+              }
+          }).catch(err => console.log(err))*/
       }
   },
   getters: {

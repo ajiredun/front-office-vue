@@ -14,24 +14,37 @@ new Vue({
     store,
     methods: {
         getDynamicRoutes(url) {
-            axios
-                .get(url)
-                .then(this.processData)
-                .catch(err => console.log(err))
+            axios.get(url).then((response) => {
+                this.processData(response)
+            }).catch(err => console.log(err))
         },
-        processData: ({data}) => {
-            data.forEach(this.createAndAppendRoute)
-        },
+        processData (response) {
+            let status = response.status
+            if (status == 200) {
+                let data = response.data['hydra:member']
 
-        createAndAppendRoute: (route) => {
-            let newRoute = {
-                path: `/${route.name}`,
-                component: MainComponent,
-                name: `${route.name}_index`,
-                props: {entity_type_id: route.id}
+                console.log(data)
+
+                data.forEach((route) => {
+                    let newRoute = {
+                        path: `${route.route}`,
+                        component: () => import( './views/'+route.layout.code+'.vue'),
+                        name: `${route.name}`//,
+                        //props: {entity_type_id: route.id}
+                    }
+                    this.$router.addRoutes([newRoute])
+
+                })
+
+                let wildRoute = {
+                    path: '/**',
+                    name: 'NotFound',
+                    component: () => import('./views/NotFound.vue')
+                }
+                this.$router.addRoutes([wildRoute])
+            } else {
+                console.log('Error fetching paths')
             }
-
-            this.$router.addRoutes([newRoute])
         }
     },
     created() {
