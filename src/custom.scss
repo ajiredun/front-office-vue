@@ -1,0 +1,13 @@
+$theme-colors: (
+        "primary": #2276e3,
+        "secondary": #c7ccd9,
+        "info": #6ca7f5,
+        "success": #2dce89,
+        "warning": #fb6340,
+        "neutral": #f0f0f0,
+        "danger": #f5365c
+);
+
+//default boostrapvue
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';

@@ -1,11 +1,16 @@
 import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
+
+import './custom.scss'
+
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
 import axios from 'axios'
 
-import MainComponent from './views/MainComponent.vue'
+
+Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
 
