@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueMeta from 'vue-meta'
 import BootstrapVue from 'bootstrap-vue'
 
 import './custom.scss'
