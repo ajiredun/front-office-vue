@@ -12,6 +12,7 @@ export default new Vuex.Store({
           backOffice : "https://back.dev.ajiredun.com/api/",
           //visualPacks : this.state.api.backOffice + "visual_packs",
           //visualPackActive : this.state.api.backOffice + "visual_packs?active=true",
+          pageRoutes : this.state.api.backOffice + "pages?published=true",
       },
       visualPack: null,
       layout: null,
@@ -31,8 +32,6 @@ export default new Vuex.Store({
       }
   },
   getters: {
-      visualPack: state => {
-          return state.boApiUrl
-      }
+
   }
 })

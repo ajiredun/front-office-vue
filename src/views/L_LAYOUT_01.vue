@@ -21,6 +21,12 @@
 
     export default {
         name: 'L_LAYOUT_01',
+        metaInfo: {
+            // if no subcomponents specify a metaInfo.title, this title will be used
+            title: 'Layou ONE TITLE',
+            // all titles will be injected into this template
+            titleTemplate: '%s | My Awesome Webapp'
+        },
         data() {
             let path = this.$route.path;
             console.log(path)
