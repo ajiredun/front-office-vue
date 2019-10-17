@@ -29,14 +29,12 @@ new Vue({
             if (status == 200) {
                 let data = response.data['hydra:member']
 
-                console.log(data)
-
                 data.forEach((route) => {
                     let newRoute = {
                         path: `${route.route}`,
                         component: () => import( './views/'+route.layout.code+'.vue'),
-                        name: `${route.name}`//,
-                        //props: {entity_type_id: route.id}
+                        name: `${route.name}`,
+                        props: {pageInfo: route}
                     }
                     this.$router.addRoutes([newRoute])
 
@@ -54,7 +52,7 @@ new Vue({
         }
     },
     created() {
-        this.getDynamicRoutes('https://back.dev.ajiredun.com/api/pages?published=true')
+        this.getDynamicRoutes(this.$store.state.api.pageRoutes)
     },
     render: h => h(App)
 }).$mount('#app')

@@ -1,6 +1,7 @@
 <template>
     <div>
         <ct-main-menu/>
+        <h2>This is layout 3</h2>
         <ct-half-image-half-text/>
     </div>
 </template>
@@ -10,7 +11,7 @@
     import GlobalComponents from '@/globalComponents.js'
 
     export default {
-        name: 'L_LAYOUT_01',
+        name: 'L_LAYOUT_03',
         components: {
             ...GlobalComponents
         },
@@ -50,8 +51,6 @@
         data() {
 
             this.$store.dispatch('setPageInfo',this.pageInfo)
-
-            console.log(this.$store.state.pageInfo)
 
             let path = this.$route.path;
             //console.log(path)
