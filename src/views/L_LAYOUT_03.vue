@@ -1,9 +1,36 @@
 <template>
-    <div>
-        <ct-main-menu/>
-        <h2>This is layout 3</h2>
-        <ct-half-image-half-text/>
-    </div>
+    <b-container fluid class="L_LAYOUTS L_LAYOUT_03">
+        <b-row no-gutters>
+            <b-col md="12">
+                <rf-slot slotCode="S_SLOT_01"/>
+                <ct-main-menu/>
+            </b-col>
+        </b-row>
+        <b-row  no-gutters>
+            <b-col md="4">
+                <rf-slot slotCode="S_SLOT_02"/>
+                This is the side content
+
+                <h5>The page you are visiting is: {{ this.$store.state.pageInfo.name }}</h5>
+            </b-col>
+            <b-col md="4">
+                <rf-slot slotCode="S_SLOT_03"/>
+                <ct-half-image-half-text/>
+                <ct-half-image-half-text/>
+                <ct-half-image-half-text/>
+            </b-col>
+            <b-col md="4">
+                <rf-slot slotCode="S_SLOT_04"/>
+                This is the right content
+            </b-col>
+        </b-row>
+        <b-row no-gutters>
+            <b-col md="12">
+                <rf-slot slotCode="S_SLOT_05"/>
+                This is the footer
+            </b-col>
+        </b-row>
+    </b-container>
 </template>
 
 <script>

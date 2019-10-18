@@ -11,3 +11,8 @@ $theme-colors: (
 //default boostrapvue
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
+
+.L_LAYOUTS {
+  padding:0;
+  margin:0;
+}
