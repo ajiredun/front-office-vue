@@ -1,5 +1,5 @@
 <template>
-    <div :ref="slotCode"></div>
+    <div :id="slotCodeId" :ref="slotCodeId"></div>
 </template>
 
 <script>
@@ -15,20 +15,25 @@
             slotCode: String
         },
         data() {
+            let slotCodeId = this.slotCode + "_" + this.$store.state.pageInfo.id
 
+            return {
+                slotCode: this.slotCode,
+                slotCodeId,
+                availableComponents: GlobalComponents
+            };
+        },
+        mounted() {
             let currentSlotCode = this.slotCode
+            let currentSlotId = this.slotCodeId
+
             let blocks = {}
-            this.$store.state.pageInfo.blocks.forEach(function(block){
+
+            this.$store.state.pageInfo.blocks.forEach(function (block) {
                 if (block.slot == currentSlotCode) {
                     blocks[block.blockOrder] = block;
                 }
             });
-
-
-            console.log(blocks)
-            /*blocks.forEach(function(block){
-                console.log(block.contentType)
-            })*/
 
             for (var key in blocks) {
                 if (!blocks.hasOwnProperty(key)) continue
@@ -37,21 +42,22 @@
                     if (!obj.hasOwnProperty(prop)) continue;
                     if (prop == "contentType") {
                         //we create the content type
-                        let componentImport = import( '@/components/'+obj[prop]+'.vue')
-
-                        var ComponentClass = Vue.extend(componentImport)
-                        var instance = new ComponentClass()
+                        var ComponentClass = Vue.extend(this.availableComponents[obj[prop]])
+                        var instance = new ComponentClass({
+                            store: this.$store,
+                            parent: this.$parent,
+                            propsData: { currentSlotId, blockInfo: obj }
+                        })
                         instance.$mount()
-                        console.log(this.$refs)
-                        console.log(currentSlotCode)
-                        this.$refs.S_SLOT_01.appendChild(instance.$el)
+                        this.$refs[currentSlotId].appendChild(instance.$el)
                     }
                 }
             }
-
-            return {
-                slotCode : currentSlotCode
-            };
+        },
+        methods: {
+            onClick() {
+                alert('Hello')
+            }
         }
     }
 </script>

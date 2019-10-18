@@ -1,18 +1,100 @@
 <template>
-    <b-row class="CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT">
+    <b-row v-if="switchToReal" class="CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT">
+        <b-col v-if="side=='left'" md="4">
+            <b-img fluid-grow :src="image"></b-img>
+        </b-col>
+        <b-col md="8" v-html="text">
+
+        </b-col>
+        <b-col v-if="side=='right'" md="4">
+            <b-img fluid-grow :src="image"></b-img>
+        </b-col>
+    </b-row>
+    <b-row v-else class="CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT">
         <b-col md="4">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <div class="mockup-img"></div>
         </b-col>
         <b-col md="8">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <div class="mockup-paragraph">
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+            </div>
         </b-col>
     </b-row>
 </template>
 
+<script>
+    import {mapState} from 'vuex';
+
+    export default {
+        props: {
+            currentSlotId: String,
+            blockInfo: Object
+        },
+        computed: {
+            ...mapState(['blockDataChanged'])
+        },
+        data() {
+            return {
+                switchToReal: false,
+                image : false,
+                side: 'left',
+                text: false,
+                title: false
+            };
+        },
+        methods: {
+            processData(block) {
+                console.log(block)
+                let properties = block.properties
+
+                if (properties.title) {
+                    this.title = properties.title
+                }
+
+                if (properties.side) {
+                    this.side = properties.side
+                }
+
+                if (properties.text) {
+                    this.text = properties.text
+                }
+
+                if (properties.image) {
+                    this.image = this.$store.state.backOfficeUrl+properties.image
+                }
+
+                this.switchToReal = true
+            }
+        },
+        mounted() {
+            let url = this.$store.state.api.getBlockData + this.blockInfo.id
+            let params = {
+                url: url,
+                id: this.blockInfo.id
+            }
+            this.$store.dispatch('loadBlockData', params)
+        },
+        watch: {
+            blockDataChanged(blockDataChanged) {
+                if (this.$store.state.blockDataChanged == this.blockInfo.id) {
+                    let block = this.$store.getters.blockData[this.blockInfo.id]
+                    this.processData(block)
+                }
+            }
+        },
+    }
+</script>
 
 <style lang="scss">
-    .CT_HALF_IMAGE_HALF_TEXT {
+    .CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT {
         margin:0;
         padding:0;
+        padding-bottom: 15px;
+        padding-top:15px;
     }
 </style>

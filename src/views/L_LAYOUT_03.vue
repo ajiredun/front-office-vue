@@ -3,31 +3,24 @@
         <b-row no-gutters>
             <b-col md="12">
                 <rf-slot slotCode="S_SLOT_01"/>
-                <ct-main-menu/>
+                <!--<ct-main-menu/>-->
             </b-col>
         </b-row>
-        <b-row  no-gutters>
+        <b-row no-gutters class="content-rows">
             <b-col md="4">
                 <rf-slot slotCode="S_SLOT_02"/>
-                This is the side content
-
                 <h5>The page you are visiting is: {{ this.$store.state.pageInfo.name }}</h5>
             </b-col>
             <b-col md="4">
                 <rf-slot slotCode="S_SLOT_03"/>
-                <ct-half-image-half-text/>
-                <ct-half-image-half-text/>
-                <ct-half-image-half-text/>
             </b-col>
             <b-col md="4">
                 <rf-slot slotCode="S_SLOT_04"/>
-                This is the right content
             </b-col>
         </b-row>
         <b-row no-gutters>
             <b-col md="12">
                 <rf-slot slotCode="S_SLOT_05"/>
-                This is the footer
             </b-col>
         </b-row>
     </b-container>
@@ -68,16 +61,16 @@
                 // all titles will be injected into this template
                 titleTemplate: '%s | ' + this.$store.state.siteName,
                 meta: [
-                    { vmid: 'description', name: 'description', content: this.pageInfo.seoMetaDescription },
-                    { vmid: 'author', name: 'author', content: this.pageInfo.seoAuthor },
-                    { vmid: 'keywords', name: 'keywords', content: this.pageInfo.seoKeywords },
-                    { vmid: 'robots', name: 'robots', content: allowRobot }
+                    {vmid: 'description', name: 'description', content: this.pageInfo.seoMetaDescription},
+                    {vmid: 'author', name: 'author', content: this.pageInfo.seoAuthor},
+                    {vmid: 'keywords', name: 'keywords', content: this.pageInfo.seoKeywords},
+                    {vmid: 'robots', name: 'robots', content: allowRobot}
                 ]
             }
         },
         data() {
 
-            this.$store.dispatch('setPageInfo',this.pageInfo)
+            this.$store.dispatch('setPageInfo', this.pageInfo)
 
             let path = this.$route.path;
             //console.log(path)
@@ -88,9 +81,7 @@
             let query = this.$route.query;
             //console.log(query)
 
-            return {
-
-            };
+            return {};
         }
     }
 </script>

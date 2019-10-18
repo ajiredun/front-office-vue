@@ -16,3 +16,28 @@ $theme-colors: (
   padding:0;
   margin:0;
 }
+
+.content-rows {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.mockup-img {
+  width:96%;
+  min-height:150px;
+  padding:2%;
+  background:gainsboro;
+}
+
+.mockup-paragraph {
+  width:96%;
+  min-height:150px;
+  padding:2%;
+}
+
+.mockup-text-line {
+  width: 100%;
+  height:12px;
+  background:gainsboro;
+  margin-bottom:15px;
+}
