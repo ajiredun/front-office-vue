@@ -29,6 +29,8 @@ new Vue({
             if (status == 200) {
                 let data = response.data['hydra:member']
 
+                console.log(data)
+
                 data.forEach((route) => {
                     let newRoute = {
                         path: `${route.route}`,

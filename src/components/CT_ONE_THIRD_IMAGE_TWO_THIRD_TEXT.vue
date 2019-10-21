@@ -1,6 +1,6 @@
 <template>
     <b-row v-if="switchToReal" class="CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT">
-        <b-col md="12" v-if="title">
+        <b-col  class="rf-block-title"  md="12" v-if="title">
             <h2 class="title">{{title}}</h2>
         </b-col>
         <b-col v-if="side=='left'" md="4">

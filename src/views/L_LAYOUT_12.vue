@@ -2,7 +2,6 @@
     <b-container fluid class="L_LAYOUTS L_LAYOUT_12">
         <b-row no-gutters>
             <b-col md="12">
-                <CT_SLIDER_THUMBNAIL/>
                 <rf-slot slotCode="S_SLOT_01"/>
             </b-col>
         </b-row>
@@ -11,7 +10,6 @@
                 <rf-slot slotCode="S_SLOT_02" />
             </b-col>
             <b-col md="9">
-                <CT_SLIDER_THUMBNAIL/>
                 <rf-slot  slotCode="S_SLOT_03" />
             </b-col>
         </b-row>

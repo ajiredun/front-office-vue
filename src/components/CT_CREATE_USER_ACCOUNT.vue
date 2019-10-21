@@ -1,13 +1,8 @@
 <template>
-    <b-row v-if="switchToReal" class="CT_FULL_TEXT">
-        <b-col class="rf-block-title"  md="12" v-if="title">
-            <h2 class="title">{{title}}</h2>
-        </b-col>
-        <b-col md="12" v-html="text">
+    <div :id="'CT_CREATE_USER_ACCOUNT_'+blockInfo.id" v-if="switchToReal" class="CT_CREATE_USER_ACCOUNT">
 
-        </b-col>
-    </b-row>
-    <b-row v-else class="CT_FULL_TEXT">
+    </div>
+    <div v-else class="CT_CREATE_USER_ACCOUNT">
         <b-col md="12" v-if="title">
             <div class="mockup-text-line" style="height:25px;"></div>
         </b-col>
@@ -24,7 +19,7 @@
                 <div class="mockup-text-line"></div>
             </div>
         </b-col>
-    </b-row>
+    </div>
 </template>
 
 <script>
@@ -40,27 +35,15 @@
         },
         data() {
             return {
-                switchToReal: false,
-                image : false,
-                side: 'left',
-                text: false,
-                title: false
+                switchToReal: false
             };
         },
         methods: {
             processData(block) {
-                console.log("Processing Full Text block: " + block.id)
+                console.log("Processing CT_CREATE_USER_ACCOUNT block: " + block.id)
                 console.log(block)
-                let properties = block.properties
 
-                if (properties.title) {
-                    this.title = properties.title
-                }
-
-                if (properties.text) {
-                    this.text = properties.text
-                }
-
+                //do all the necessary and then change the response
                 this.switchToReal = true
             }
         },
@@ -84,10 +67,7 @@
 </script>
 
 <style lang="scss">
-    .CT_FULL_TEXT {
-        margin:0;
-        padding:0;
-        padding-bottom: 15px;
-        padding-top:15px;
+    .CT_CREATE_USER_ACCOUNT {
+
     }
 </style>

@@ -10,9 +10,9 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav align="center">
                     <b-nav-item to="/about-us">About us</b-nav-item>
-                    <b-nav-item to="/about-us">{{ currentSlotId }}</b-nav-item>
-                    <b-nav-item to="/about-us">{{ blockInfo.id }}</b-nav-item>
-                    <b-nav-item to="/about-us">{{ blockInfo.slot }}</b-nav-item>
+                    <b-nav-item to="/login">Login</b-nav-item>
+                    <b-nav-item to="/create">Create Account</b-nav-item>
+                    <b-nav-item to="/profile">My Account</b-nav-item>
                     <b-nav-item to="/about-us">{{ blockInfo.contentType }}</b-nav-item>
                 </b-navbar-nav>
 

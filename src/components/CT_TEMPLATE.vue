@@ -1,5 +1,5 @@
 <template>
-    <div v-if="switchToReal" class="CT_TEMPLATE">
+    <div :id="'CT_TEMPLATE_'+blockInfo.id" v-if="switchToReal" class="CT_TEMPLATE">
 
     </div>
     <div v-else class="CT_TEMPLATE">
@@ -20,12 +20,14 @@
         },
         data() {
             return {
-                switchToReal: false
+                switchToReal: false,
+                title: false,
             };
         },
         methods: {
             processData(block) {
-
+                console.log("Processing Half Image Half Text block: " + block.id)
+                console.log(block)
 
                 //do all the necessary and then change the response
                 this.switchToReal = true
