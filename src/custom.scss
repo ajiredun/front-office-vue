@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i');
+@import url('https://fonts.googleapis.com/css?family=Mansalva:400');
+@import url('https://fonts.googleapis.com/css?family=Courgette|Dancing+Script|Didact+Gothic|Exo|Indie+Flower|Mansalva|Montserrat|Pacifico|Quicksand|Raleway');
+
 $theme-colors: (
         "primary": #2866B3,
         "secondary": #343A40,
@@ -8,9 +12,33 @@ $theme-colors: (
         "danger": #B92836
 );
 
+$font-family-sans-serif: 'Montserrat', 'Lato', 'Mansalva', "Quicksand", Arial, sans-serif !default;
+$font-family-serif:      'Courgette', "Dancing Script", 'Pacifico', serif !default;
+$font-family-monospace:  'Didact Gothic', 'Exo', 'Indie Flower', "Raleway", "Courier New", monospace !default;
+$font-family-base:       $font-family-sans-serif !default;
+
+
 //default boostrapvue
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
+
+
+.rf-fill {
+  width:98%;
+  min-height:100px;
+  height:100%;
+  padding:1%;
+  margin:0;
+}
+
+.rf-fill-align-center {
+  width:98%;
+  min-height:100px;
+  height:100%;
+  padding:1%;
+  margin:0;
+  text-align:center;
+}
 
 .L_LAYOUTS {
   padding:0;
@@ -41,3 +69,64 @@ $theme-colors: (
   background:gainsboro;
   margin-bottom:15px;
 }
+
+//styling for tinymce contents
+.rf-img-float-left {
+  float: left;
+  margin: 0 10px 0 10px;
+}
+
+.rf-img-float-right {
+  float: right;
+  margin: 0 10px 0 10px;
+}
+
+
+
+@media screen and (max-width: 1800px) {
+  .rf-img-md-100-sm-100{
+    width:100%;
+    height: auto;
+  }
+  .rf-img-md-50-sm-100{
+    width:50%;
+    height: auto;
+  }
+  .rf-img-md-50-sm-50{
+    width:50%;
+    height: auto;
+  }
+  .rf-img-md-25-sm-50 {
+    width: 25%;
+    height: auto;
+  }
+  .rf-img-md-25-sm-100 {
+    width: 25%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+  .rf-img-md-100-sm-100{
+    width:100%;
+    height: auto;
+  }
+  .rf-img-md-50-sm-100{
+    width:100%;
+    height: auto;
+  }
+  .rf-img-md-50-sm-50{
+    width:50%;
+    height: auto;
+  }
+  .rf-img-md-25-sm-50 {
+    width: 50%;
+    height: auto;
+  }
+  .rf-img-md-25-sm-100 {
+    width: 100%;
+    height: auto;
+  }
+}
+

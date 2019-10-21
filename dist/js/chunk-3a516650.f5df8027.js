@@ -1,2 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-3a516650"],{9703:function(t,n,e){"use strict";e.r(n);var o=function(){var t=this,n=t.$createElement;t._self._c;return t._m(0)},c=[function(){var t=this,n=t.$createElement,o=t._self._c||n;return o("div",{staticClass:"NotFound"},[o("img",{attrs:{alt:"Vue logo",src:e("cf05")}}),o("h1",[t._v("This route does not exist")])])}],s={name:"NotFound",data:function(){return{}},components:{}},u=s,a=e("2877"),r=Object(a["a"])(u,o,c,!1,null,null,null);n["default"]=r.exports},cf05:function(t,n,e){t.exports=e.p+"img/logo.82b9c7a5.png"}}]);
-//# sourceMappingURL=chunk-3a516650.dcdd950f.js.map
+//# sourceMappingURL=chunk-3a516650.f5df8027.js.map

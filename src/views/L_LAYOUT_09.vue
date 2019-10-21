@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid class="L_LAYOUTS L_LAYOUT_01">
+    <b-container fluid class="L_LAYOUTS L_LAYOUT_09">
         <b-row no-gutters>
             <b-col md="12">
                 <rf-slot slotCode="S_SLOT_01"/>
@@ -7,17 +7,24 @@
             </b-col>
         </b-row>
         <b-row no-gutters class="content-rows">
+            <b-col md="8">
+                <rf-slot slotCode="S_SLOT_02"/>
+            </b-col>
             <b-col md="4">
-                <rf-slot slotCode="S_SLOT_02" />
+                <rf-slot slotCode="S_SLOT_03"/>
+            </b-col>
+        </b-row>
+        <b-row no-gutters class="content-rows">
+            <b-col md="4">
+                <rf-slot slotCode="S_SLOT_04"/>
             </b-col>
             <b-col md="8">
-                <rf-slot  slotCode="S_SLOT_03" />
-                <!--<ct-half-image-half-text/>-->
+                <rf-slot slotCode="S_SLOT_05"/>
             </b-col>
         </b-row>
         <b-row no-gutters>
             <b-col md="12">
-                <rf-slot  slotCode="S_SLOT_04" />
+                <rf-slot slotCode="S_SLOT_06"/>
             </b-col>
         </b-row>
     </b-container>
@@ -28,7 +35,7 @@
     import GlobalComponents from '@/globalComponents.js'
 
     export default {
-        name: 'L_LAYOUT_01',
+        name: 'L_LAYOUT_09',
         components: {
             ...GlobalComponents
         },
@@ -58,16 +65,16 @@
                 // all titles will be injected into this template
                 titleTemplate: '%s | ' + this.$store.state.siteName,
                 meta: [
-                    { vmid: 'description', name: 'description', content: this.pageInfo.seoMetaDescription },
-                    { vmid: 'author', name: 'author', content: this.pageInfo.seoAuthor },
-                    { vmid: 'keywords', name: 'keywords', content: this.pageInfo.seoKeywords },
-                    { vmid: 'robots', name: 'robots', content: allowRobot }
+                    {vmid: 'description', name: 'description', content: this.pageInfo.seoMetaDescription},
+                    {vmid: 'author', name: 'author', content: this.pageInfo.seoAuthor},
+                    {vmid: 'keywords', name: 'keywords', content: this.pageInfo.seoKeywords},
+                    {vmid: 'robots', name: 'robots', content: allowRobot}
                 ]
             }
         },
         data() {
 
-            this.$store.dispatch('setPageInfo',this.pageInfo)
+            this.$store.dispatch('setPageInfo', this.pageInfo)
 
             let path = this.$route.path;
             //console.log(path)
@@ -78,9 +85,7 @@
             let query = this.$route.query;
             //console.log(query)
 
-            return {
-
-            };
+            return {};
         }
     }
 </script>

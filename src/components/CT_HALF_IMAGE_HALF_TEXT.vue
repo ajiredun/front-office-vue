@@ -1,13 +1,22 @@
 <template>
     <b-row v-if="switchToReal" class="CT_HALF_IMAGE_HALF_TEXT">
-        <b-col md="6">
-            <b-img fluid-grow  src="img/logo.png"></b-img>
+        <b-col md="12" v-if="title">
+            <h2 class="title">{{title}}</h2>
         </b-col>
-        <b-col md="6">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        <b-col v-if="side=='left'" md="6">
+            <b-img fluid-grow :src="image"></b-img>
+        </b-col>
+        <b-col md="6" v-html="text">
+
+        </b-col>
+        <b-col v-if="side=='right'" md="6">
+            <b-img fluid-grow :src="image"></b-img>
         </b-col>
     </b-row>
     <b-row v-else class="CT_HALF_IMAGE_HALF_TEXT">
+        <b-col md="12" v-if="title">
+            <div class="mockup-text-line" style="height:25px;"></div>
+        </b-col>
         <b-col md="6">
             <div class="mockup-img"></div>
         </b-col>
@@ -37,13 +46,37 @@
         },
         data() {
             return {
-                switchToReal: false
+                switchToReal: false,
+                image : false,
+                side: 'left',
+                text: false,
+                title: false
             };
         },
         methods: {
             processData(block) {
+                console.log("Processing Half Image Half Text block: " + block.id)
+                console.log(block)
+                let properties = block.properties
+
+                if (properties.title) {
+                    this.title = properties.title
+                }
+
+                if (properties.side) {
+                    this.side = properties.side
+                }
+
+                if (properties.text) {
+                    this.text = properties.text
+                }
+
+                if (properties.image) {
+                    this.image = properties.image
+                }
+
                 this.switchToReal = true
-            }
+            },
         },
         mounted() {
             let url = this.$store.state.api.getBlockData + this.blockInfo.id

@@ -9,7 +9,6 @@
         <b-row no-gutters class="content-rows">
             <b-col md="4">
                 <rf-slot slotCode="S_SLOT_02"/>
-                <h5>The page you are visiting is: {{ this.$store.state.pageInfo.name }}</h5>
             </b-col>
             <b-col md="4">
                 <rf-slot slotCode="S_SLOT_03"/>

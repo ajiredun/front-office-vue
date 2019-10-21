@@ -1,27 +1,21 @@
 <template>
-    <b-row v-if="switchToReal" class="CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT">
+    <b-row v-if="switchToReal" class="CT_FULL_TEXT">
         <b-col md="12" v-if="title">
             <h2 class="title">{{title}}</h2>
         </b-col>
-        <b-col v-if="side=='left'" md="4">
-            <b-img fluid-grow :src="image"></b-img>
-        </b-col>
-        <b-col md="8" v-html="text">
+        <b-col md="12" v-html="text">
 
         </b-col>
-        <b-col v-if="side=='right'" md="4">
-            <b-img fluid-grow :src="image"></b-img>
-        </b-col>
     </b-row>
-    <b-row v-else class="CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT">
+    <b-row v-else class="CT_FULL_TEXT">
         <b-col md="12" v-if="title">
             <div class="mockup-text-line" style="height:25px;"></div>
         </b-col>
-        <b-col md="4">
-            <div class="mockup-img"></div>
-        </b-col>
-        <b-col md="8">
+        <b-col md="12">
             <div class="mockup-paragraph">
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
                 <div class="mockup-text-line"></div>
                 <div class="mockup-text-line"></div>
                 <div class="mockup-text-line"></div>
@@ -55,7 +49,7 @@
         },
         methods: {
             processData(block) {
-                console.log("Processing One third Image and Two third Text block: " + block.id)
+                console.log("Processing Full Text block: " + block.id)
                 console.log(block)
                 let properties = block.properties
 
@@ -63,16 +57,8 @@
                     this.title = properties.title
                 }
 
-                if (properties.side) {
-                    this.side = properties.side
-                }
-
                 if (properties.text) {
                     this.text = properties.text
-                }
-
-                if (properties.image) {
-                    this.image = properties.image
                 }
 
                 this.switchToReal = true
@@ -98,7 +84,7 @@
 </script>
 
 <style lang="scss">
-    .CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT {
+    .CT_FULL_TEXT {
         margin:0;
         padding:0;
         padding-bottom: 15px;

@@ -1,5 +1,6 @@
 module.exports = {
     chainWebpack: config => {
+        config.optimization.delete('splitChunks'),
         config.module
             .rule('vue')
             .use('vue-loader')

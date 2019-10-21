@@ -1,18 +1,18 @@
 <template>
-    <b-container fluid class="L_LAYOUTS L_LAYOUT_01">
+    <b-container fluid class="L_LAYOUTS L_LAYOUT_12">
         <b-row no-gutters>
             <b-col md="12">
+                <CT_SLIDER_THUMBNAIL/>
                 <rf-slot slotCode="S_SLOT_01"/>
-                <!--<ct-main-menu/>-->
             </b-col>
         </b-row>
         <b-row no-gutters class="content-rows">
-            <b-col md="4">
+            <b-col md="3">
                 <rf-slot slotCode="S_SLOT_02" />
             </b-col>
-            <b-col md="8">
+            <b-col md="9">
+                <CT_SLIDER_THUMBNAIL/>
                 <rf-slot  slotCode="S_SLOT_03" />
-                <!--<ct-half-image-half-text/>-->
             </b-col>
         </b-row>
         <b-row no-gutters>
@@ -28,7 +28,7 @@
     import GlobalComponents from '@/globalComponents.js'
 
     export default {
-        name: 'L_LAYOUT_01',
+        name: 'L_LAYOUT_12',
         components: {
             ...GlobalComponents
         },
