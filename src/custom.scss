@@ -130,3 +130,56 @@ $font-family-base:       $font-family-sans-serif !default;
   }
 }
 
+//breakpoints
+//mobile
+@media screen and (max-width: 576px) {
+
+  .show_in_mobile{
+    display:block;
+  }
+  .show_in_tablet{
+    display: none;
+  }
+  .show_in_desktop{
+    display:none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .show_in_mobile{
+    display:none;
+  }
+  .show_in_tablet{
+    display: block;
+  }
+  .show_in_desktop{
+    display:none;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+  .show_in_mobile{
+    display:none;
+  }
+  .show_in_tablet{
+    display: none;
+  }
+  .show_in_desktop{
+    display:block;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+
+  .show_in_mobile{
+    display:none;
+  }
+  .show_in_tablet{
+    display: none;
+  }
+  .show_in_desktop{
+    display:block;
+  }
+}

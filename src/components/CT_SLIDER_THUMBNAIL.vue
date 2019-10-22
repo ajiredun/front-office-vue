@@ -1,5 +1,5 @@
 <template>
-    <b-row :id="'CT_SLIDER_THUMBNAIL_'+blockInfo.id" v-if="switchToReal" class="CT_SLIDER_THUMBNAIL">
+    <b-row :id="'CT_SLIDER_THUMBNAIL_'+blockInfo.id" v-if="switchToReal" :class="'CT_SLIDER_THUMBNAIL ' + displays">
         <b-col md="12" class="rf-block-title" v-if="title">
             <h2 class="title">{{title}}</h2>
         </b-col>
@@ -155,6 +155,7 @@
         data() {
             return {
                 switchToReal: false,
+                displays: '',
                 title: false,
                 autoplay: true,
                 autoplayTimeout:3000,
@@ -209,6 +210,10 @@
 
                 if (properties.title) {
                     this.title = properties.title
+                }
+
+                if (properties.displays) {
+                    this.displays = properties.displays.join(' ')
                 }
 
                 if (properties.autoplay) {

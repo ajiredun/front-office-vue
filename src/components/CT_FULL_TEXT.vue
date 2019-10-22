@@ -1,5 +1,5 @@
 <template>
-    <b-row v-if="switchToReal" class="CT_FULL_TEXT">
+    <b-row :id="'CT_FULL_TEXT'+blockInfo.id"  v-if="switchToReal" :class="'CT_FULL_TEXT ' + displays" >
         <b-col class="rf-block-title"  md="12" v-if="title">
             <h2 class="title">{{title}}</h2>
         </b-col>
@@ -41,6 +41,7 @@
         data() {
             return {
                 switchToReal: false,
+                displays: '',
                 image : false,
                 side: 'left',
                 text: false,
@@ -59,6 +60,10 @@
 
                 if (properties.text) {
                     this.text = properties.text
+                }
+
+                if (properties.displays) {
+                    this.displays = properties.displays.join(' ')
                 }
 
                 this.switchToReal = true

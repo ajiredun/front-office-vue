@@ -14,6 +14,7 @@ export default new Vuex.Store({
             //visualPackActive : this.state.api.backOffice + "visual_packs?active=true",
             pageRoutes: "https://back.dev.ajiredun.com/api/pages?published=true",
             getBlockData: "https://back.dev.ajiredun.com/api/blocks/",
+            userRegister: "https://back.dev.ajiredun.com/api/register",
         },
         pageInfo: null,
         container: {

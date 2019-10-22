@@ -1,5 +1,5 @@
 <template>
-    <div v-if="switchToReal" class="CT_MENU_MAIN">
+    <div v-if="switchToReal" :class="'CT_MENU_MAIN ' + displays">
         <b-navbar toggleable="lg" sticky="true" type="light" variant="white">
             <b-navbar-brand to="/">
                 <b-img class="nav-logo" blank-color="#777" src="img/logo.png"></b-img>
@@ -11,7 +11,7 @@
                 <b-navbar-nav align="center">
                     <b-nav-item to="/about-us">About us</b-nav-item>
                     <b-nav-item to="/login">Login</b-nav-item>
-                    <b-nav-item to="/create">Create Account</b-nav-item>
+                    <b-nav-item to="/register">Create Account</b-nav-item>
                     <b-nav-item to="/profile">My Account</b-nav-item>
                     <b-nav-item to="/about-us">{{ blockInfo.contentType }}</b-nav-item>
                 </b-navbar-nav>
@@ -82,11 +82,19 @@
         },
         data() {
             return {
-                switchToReal: false
+                switchToReal: false,
+                displays: '',
             };
         },
         methods: {
             processData(block) {
+
+                let properties = block.properties
+
+                if (properties.displays) {
+                    this.displays = properties.displays.join(' ')
+                }
+
                 this.switchToReal = true
             }
         },
