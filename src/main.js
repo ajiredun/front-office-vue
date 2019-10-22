@@ -32,8 +32,13 @@ new Vue({
                 console.log(data)
 
                 data.forEach((route) => {
+
+                    let routing = route.route
+                    if (route.routeParams) {
+                        routing = routing+ route.routeParams
+                    }
                     let newRoute = {
-                        path: `${route.route}`,
+                        path: `${routing}`,
                         component: () => import( './views/'+route.layout.code+'.vue'),
                         name: `${route.name}`,
                         props: {pageInfo: route}

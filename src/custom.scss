@@ -23,6 +23,62 @@ $font-family-base:       $font-family-sans-serif !default;
 @import 'node_modules/bootstrap-vue/src/index.scss';
 
 
+.rf-primary {
+  color: theme-color("primary");
+}
+
+.rf-secondary {
+  color: theme-color("secondary");
+}
+
+.rf-info {
+  color: theme-color("info");
+}
+
+.rf-success {
+  color: theme-color("success");
+}
+
+.rf-warning {
+  color: theme-color("warning");
+}
+
+.rf-neutral {
+  color: theme-color("neutral");
+}
+
+.rf-danger {
+  color: theme-color("danger");
+}
+
+.rf-background-primary {
+  background-color: theme-color("primary");
+}
+
+.rf-background-secondary {
+  background-color: theme-color("secondary");
+}
+
+.rf-background-info {
+  background-color: theme-color("info");
+}
+
+.rf-background-success {
+  background-color: theme-color("success");
+}
+
+.rf-background-warning {
+  background-color: theme-color("warning");
+}
+
+.rf-background-neutral {
+  background-color: theme-color("neutral");
+}
+
+.rf-background-danger {
+  background-color: theme-color("danger");
+}
+
 .rf-fill {
   width:98%;
   min-height:100px;
@@ -45,6 +101,17 @@ $font-family-base:       $font-family-sans-serif !default;
   margin:0;
 }
 
+.rf-title-margin {
+  margin-top:-30px;
+}
+
+.rf-title-margin-div {
+  margin-top:30px;
+  width:96%;
+  padding:2%;
+  box-shadow: 4px 4px 15px #efefef;
+}
+
 .content-rows {
   max-width: 1200px;
   margin: auto;
@@ -61,10 +128,17 @@ $font-family-base:       $font-family-sans-serif !default;
   width:96%;
   min-height:150px;
   padding:2%;
+  text-align:center;
+}
+
+.mockup-spinner {
+  color:gainsboro;
+  padding:25px;
 }
 
 .mockup-text-line {
-  width: 100%;
+  width:96%;
+  padding:2%;
   height:12px;
   background:gainsboro;
   margin-bottom:15px;
@@ -131,18 +205,37 @@ $font-family-base:       $font-family-sans-serif !default;
 }
 
 //breakpoints
-//mobile
-@media screen and (max-width: 576px) {
 
-  .show_in_mobile{
-    display:block;
-  }
+
+@media screen and (max-width: 2600px) {
+
   .show_in_tablet{
     display: none;
   }
-  .show_in_desktop{
+
+  .show_in_mobile{
     display:none;
   }
+
+  .show_in_desktop{
+    display:block;
+  }
+
+}
+
+@media screen and (max-width: 992px) {
+
+  .show_in_tablet{
+    display: none;
+  }
+  .show_in_mobile{
+    display:none;
+  }
+
+  .show_in_desktop{
+    display:block;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -150,36 +243,25 @@ $font-family-base:       $font-family-sans-serif !default;
   .show_in_mobile{
     display:none;
   }
+  .show_in_desktop{
+    display:none;
+  }
+
   .show_in_tablet{
     display: block;
   }
-  .show_in_desktop{
-    display:none;
-  }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 576px) {
 
-  .show_in_mobile{
+  .show_in_desktop{
     display:none;
   }
   .show_in_tablet{
     display: none;
   }
-  .show_in_desktop{
-    display:block;
-  }
-}
-
-@media screen and (max-width: 1600px) {
-
   .show_in_mobile{
-    display:none;
-  }
-  .show_in_tablet{
-    display: none;
-  }
-  .show_in_desktop{
     display:block;
   }
 }
+

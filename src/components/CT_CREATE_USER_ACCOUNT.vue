@@ -1,33 +1,48 @@
 <template>
-    <div :id="'CT_CREATE_USER_ACCOUNT_'+blockInfo.id" v-if="switchToReal" :class="'CT_CREATE_USER_ACCOUNT ' + displays ">
-        <b-col md="12" class="rf-block-title" v-if="title">
-            <h2 class="title">{{title}}</h2>
-        </b-col>
+    <div no-gutters :id="'CT_CREATE_USER_ACCOUNT_'+blockInfo.id" v-if="switchToReal"
+         :class="'CT_CREATE_USER_ACCOUNT rf-title-margin-div ' + displays ">
+        <b-row no-gutters class="rf-title-margin">
+            <b-col md="12" class="rf-block-title rf-neutral rf-background-primary" v-if="title">
+                <h2 class="title">{{title}}</h2>
+            </b-col>
+        </b-row>
         <b-row no-gutters>
             <b-col md="1"></b-col>
-            <b-col md="10" style="padding-right:20px;padding-left:20px;">
-                <b-form @submit="onSubmit" id="form_register" @reset="onReset" v-if="show" class="mb-3" style="margin-top: 27px;">
+            <b-col md="10">
+                <b-form @submit="onSubmit" id="form_register" @reset="onReset" v-if="show" class="mb-3"
+                        style="margin-top: 27px;">
                     <b-form-group id="input-group-2" label="Personal Info" label-for="input-2">
-                        <b-form-input
-                                id="input-2"
-                                v-model="form.input_firstname"
-                                required
-                                placeholder="Name"
-                        ></b-form-input>
+                        <b-row>
+                            <b-col md="6">
+                                <b-form-input
+                                        id="input-2"
+                                        v-model="form.input_firstname"
+                                        required
+                                        placeholder="Name"
+                                ></b-form-input>
+                            </b-col>
+                            <b-col md="6">
+                                <b-form-input
+                                        id="input-3"
+                                        v-model="form.input_lastname"
+                                        required
+                                        placeholder="Surname"
+                                ></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col md="6">
+                                <b-form-input
+                                        id="input-9"
+                                        v-model="form.input_mobile"
+                                        required
+                                        placeholder="Telephone / Mobile"
+                                ></b-form-input>
+                            </b-col>
+                            <b-col md="6">
 
-                        <b-form-input
-                                id="input-3"
-                                v-model="form.input_lastname"
-                                required
-                                placeholder="Surname"
-                        ></b-form-input>
-
-                        <b-form-input
-                                id="input-9"
-                                v-model="form.input_mobile"
-                                required
-                                placeholder="Telephone / Mobile"
-                        ></b-form-input>
+                            </b-col>
+                        </b-row>
                     </b-form-group>
 
                     <b-form-group
@@ -35,27 +50,38 @@
                             label="Login Info"
                             label-for="input-1"
                     >
-                        <b-form-input
-                                id="input-1"
-                                v-model="form.input_email"
-                                type="email"
-                                required
-                                placeholder="Email"
-                        ></b-form-input>
-                        <b-form-input
-                                id="input-6"
-                                v-model="form.input_password"
-                                type="password"
-                                required
-                                placeholder="Password"
-                        ></b-form-input>
-                        <b-form-input
-                                id="input-7"
-                                v-model="form.input_confirm_password"
-                                type="password"
-                                required
-                                placeholder="Confirm Password"
-                        ></b-form-input>
+
+                        <b-row no-gutters>
+                            <b-col md="12">
+                                <b-form-input
+                                        id="input-1"
+                                        v-model="form.input_email"
+                                        type="email"
+                                        required
+                                        placeholder="Email"
+                                ></b-form-input>
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col md="6">
+                                <b-form-input
+                                        id="input-6"
+                                        v-model="form.input_password"
+                                        type="password"
+                                        required
+                                        placeholder="Password"
+                                ></b-form-input>
+                            </b-col>
+                            <b-col md="6">
+                                <b-form-input
+                                        id="input-7"
+                                        v-model="form.input_confirm_password"
+                                        type="password"
+                                        required
+                                        placeholder="Confirm Password"
+                                ></b-form-input>
+                            </b-col>
+                        </b-row>
                     </b-form-group>
 
                     <b-form-group id="input-group-4">
@@ -77,31 +103,26 @@
                         </div>
                     </b-form-group>
 
-                    <b-button type="submit" variant="primary">Submit</b-button>
-                    <b-button type="reset" variant="danger">Reset</b-button>
+                    <i v-if="rf_loading" class="fas fa-spinner fa-2x fa-spin"></i>
+                    <div v-else>
+                        <b-button type="submit" variant="primary">Submit</b-button>
+                        <b-button type="reset" variant="danger">Reset</b-button>
+                    </div>
                 </b-form>
             </b-col>
             <b-col md="1"></b-col>
         </b-row>
     </div>
-    <div v-else class="CT_CREATE_USER_ACCOUNT">
+    <b-row no-gutters v-else class="CT_CREATE_USER_ACCOUNT">
         <b-col md="12" v-if="title">
             <div class="mockup-text-line" style="height:25px;"></div>
         </b-col>
         <b-col md="12">
             <div class="mockup-paragraph">
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
+                <div class="mockup-img" style="height: 350px;"></div>
             </div>
         </b-col>
-    </div>
+    </b-row>
 </template>
 
 <script>
@@ -119,6 +140,7 @@
         data() {
             return {
                 switchToReal: false,
+                rf_loading: false,
                 title: false,
                 displays: '',
                 form: {
@@ -157,9 +179,10 @@
             },
             onSubmit(evt) {
                 evt.preventDefault()
+                this.rf_loading = true
                 if (this.form.checked.indexOf('termsAndConditions') < 0) {
                     this.error_terms_and_conditions = true
-
+                    this.rf_loading = false
                     return false
                 } else {
                     this.error_terms_and_conditions = false
@@ -189,15 +212,17 @@
                                 console.log('User do not have access to block: ' + blockId)
                             } else {
                                 if (status == 404) {
-                                    console.log('Block not found: '+blockId)
+                                    console.log('Block not found: ' + blockId)
                                 } else {
-                                    console.log('Error loading block: '+blockId)
+                                    console.log('Error loading block: ' + blockId)
                                 }
                             }
                         }
+                        this.rf_loading = false
                     })
                     .catch((error) => {
-                        console.log('Error loading block: '+error)
+                        console.log('Error loading block: ' + error)
+                        this.rf_loading = false
                     });
             },
             onCheckTermsAndConditions(evt) {
@@ -245,9 +270,26 @@
 
 <style lang="scss">
     .CT_CREATE_USER_ACCOUNT {
-        border: 1px solid gainsboro;
         border-radius: 10px;
-        margin-right: 15px;
-        margin-left: 15px;
+        max-width:450px;
+        margin-right: auto;
+        margin-left: auto;
+
+        .form-control {
+            margin-top:10px;
+            margin-bottom:10px;
+        }
+
+        .rf-block-title {
+            padding-top: 15px;
+            font-size: 30px;
+            padding-bottom: 10px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 6px 6px #efefef;
+        }
+        .btn {
+            margin-right:10px;
+        }
     }
 </style>

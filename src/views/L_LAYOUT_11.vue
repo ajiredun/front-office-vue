@@ -62,18 +62,13 @@
             }
         },
         data() {
-
             this.$store.dispatch('setPageInfo', this.pageInfo)
-
             let path = this.$route.path;
             //console.log(path)
-
             let params = this.$route.params;
             //console.log(params)
-
             let query = this.$route.query;
             //console.log(query)
-
             return {};
         }
     }

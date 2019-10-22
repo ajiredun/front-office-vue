@@ -7,6 +7,7 @@ Vue.use(Vuex, axios)
 export default new Vuex.Store({
     state: {
         siteName: "Rush Front Office",
+        frontOfficeUrl: "https://front.dev.ajiredun.com",
         backOfficeUrl: "https://back.dev.ajiredun.com",
         api: {
             backOffice: "https://back.dev.ajiredun.com/api/",
@@ -15,6 +16,8 @@ export default new Vuex.Store({
             pageRoutes: "https://back.dev.ajiredun.com/api/pages?published=true",
             getBlockData: "https://back.dev.ajiredun.com/api/blocks/",
             userRegister: "https://back.dev.ajiredun.com/api/register",
+            userLogin: "https://back.dev.ajiredun.com/api/login",
+            userActivateAccount: "https://back.dev.ajiredun.com/api/activate",
         },
         pageInfo: null,
         container: {

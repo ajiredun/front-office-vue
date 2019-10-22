@@ -14,7 +14,7 @@
         </b-col>
     </b-row>
     <b-row v-else class="CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT">
-        <b-col md="12" v-if="title">
+        <b-col md="12">
             <div class="mockup-text-line" style="height:25px;"></div>
         </b-col>
         <b-col md="4">

@@ -2,7 +2,7 @@
     <div v-if="switchToReal" :class="'CT_MENU_MAIN ' + displays">
         <b-navbar toggleable="lg" sticky="true" type="light" variant="white">
             <b-navbar-brand to="/">
-                <b-img class="nav-logo" blank-color="#777" src="img/logo.png"></b-img>
+                <b-img class="nav-logo" blank-color="#777" :src="this.$store.state.frontOfficeUrl +'/img/logo.png'"></b-img>
             </b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

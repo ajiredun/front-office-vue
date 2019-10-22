@@ -1,10 +1,26 @@
 <template>
     <div :id="'CT_TEMPLATE_'+blockInfo.id" v-if="switchToReal" :class="'CT_TEMPLATE ' + displays">
+        <b-row no-gutters>
+            <b-col md="12" class="rf-block-title rf-primary" v-if="title">
+                <h2 class="title">{{title}}</h2>
+            </b-col>
+        </b-row>
+        <b-row no-gutters>
 
+        </b-row>
     </div>
-    <div v-else class="CT_TEMPLATE">
-
-    </div>
+    <b-row v-else class="CT_TEMPLATE">
+        <b-col md="12">
+            <div class="mockup-paragraph">
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+                <div class="mockup-text-line"></div>
+            </div>
+        </b-col>
+    </b-row>
 </template>
 
 <script>
@@ -30,6 +46,11 @@
                 console.log("Processing Half Image Half Text block: " + block.id)
                 console.log(block)
                 let properties = block.properties
+
+                if (properties.title) {
+                    this.title = properties.title
+                }
+
                 if (properties.displays) {
                     this.displays = properties.displays.join(' ')
                 }
