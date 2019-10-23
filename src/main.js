@@ -10,7 +10,6 @@ import store from './store'
 import './registerServiceWorker'
 import axios from 'axios'
 
-
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false

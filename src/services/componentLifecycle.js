@@ -32,8 +32,53 @@ export default {
                 this.image = properties.image
             }
         },
-        hideWhenCreated(element) {
+        processApiErrors(error, messageInfo) {
+            let selectedMessage = "And error occurred while trying this request"
+            if (messageInfo.default !== undefined && messageInfo.default !== null) {
+                selectedMessage = messageInfo.default
+            }
 
+            if (error.response !== undefined && error.response != null) {
+                if (error.response.status !== undefined && error.response.status != null) {
+                    let status = error.response.status
+
+                    if (status == 404) {
+                        if (messageInfo.error404 !== undefined && messageInfo.error404 !== null) {
+                            selectedMessage = messageInfo.error404
+                        } else {
+                            selectedMessage = 'The resource your are trying to retrieve is: NOT FOUND'
+                        }
+                    }
+
+
+                    if (status == 403) {
+                        if (messageInfo.error403 !== undefined && messageInfo.error403 !== null) {
+                            selectedMessage = messageInfo.error403
+                        } else {
+                            selectedMessage = 'You are trying to access something that is protected. Please contact us'
+                        }
+                    }
+
+                    if (status == 401) {
+                        if (messageInfo.error401 !== undefined && messageInfo.error401 !== null) {
+                            selectedMessage = messageInfo.error401
+                        } else {
+                            selectedMessage = 'You are trying to access something that is protected. Please contact us'
+                        }
+                    }
+
+                    if (status == 400) {
+                        if (messageInfo.error400 !== undefined && messageInfo.error400 !== null) {
+                            selectedMessage = messageInfo.error400
+                        } else {
+                            selectedMessage = 'And error occurred, we got a bad request'
+                        }
+                    }
+                }
+            }
+
+            console.log(selectedMessage)
+            return selectedMessage
         }
     },
     computed: {
@@ -75,9 +120,6 @@ export default {
         } else {
             this.$store.dispatch('loadBlockData', params)
         }
-
-
-
     },
     watch: {
         blockDataChanged(blockDataChanged) {

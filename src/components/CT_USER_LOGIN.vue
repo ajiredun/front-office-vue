@@ -7,9 +7,8 @@
             </b-col>
         </b-row>
         <b-row no-gutters>
-            <b-col md="1"></b-col>
-            <b-col md="10">
-                <b-form @submit="onSubmit" id="form_register" v-if="show" class="mb-3"
+            <b-col md="12">
+                <b-form @submit="onSubmit" id="form_login" v-if="show" class="mb-3"
                         style="margin-top: 27px;">
                     <b-form-group
                             id="input-group-1"
@@ -41,8 +40,9 @@
                         </b-row>
                     </b-form-group>
 
-                    <b-button v-if="rf_loading" type="button" class="btn-block" variant="neutral"><i
-                            class="fas fa-spinner fa-2x fa-spin"></i></b-button>
+                    <b-button v-if="rf_loading" type="button" class="btn-block" variant="neutral">
+                        <b-spinner style="width: 2rem; height: 2rem;" label="Large Spinner" type="grow"></b-spinner>
+                    </b-button>
                     <div v-else>
                         <b-button type="submit" class="btn-block" variant="primary">Login</b-button>
                     </div>
@@ -59,17 +59,30 @@
                     </b-col>
                 </b-row>
                 <div v-else></div>
+
+                <br/>
+                <b-row>
+                    <b-col md="12">
+                        <div class="d-flex justify-content-between">
+                            <b-button size="sm" type="button" :to="'register'" variant="outline-dark">Register</b-button>
+                            <b-button size="sm" type="button" :to="'password-recovery'" variant="outline-warning">Forgot Password ?</b-button>
+                        </div>
+                    </b-col>
+                </b-row>
             </b-col>
-            <b-col md="1"></b-col>
         </b-row>
     </div>
     <div no-gutters v-else :id="'MOCKUP_CT_USER_LOGIN_'+blockInfo.id"  class="CT_USER_LOGIN">
         <b-row>
             <b-col md="12">
-                <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
+                <div class="mockup-container">
+                    <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
+                </div>
             </b-col>
             <b-col md="12">
-                <div class="mockup-img" style="height: 350px;"></div>
+                <div class="mockup-container">
+                    <div class="mockup-img" style="height: 250px;"></div>
+                </div>
             </b-col>
         </b-row>
     </div>
@@ -180,7 +193,7 @@
 <style lang="scss">
     .CT_USER_LOGIN {
         border-radius: 10px;
-        max-width: 300px;
+        max-width: 350px;
         margin-right: auto;
         margin-left: auto;
 
@@ -194,12 +207,12 @@
             font-size: 30px;
             padding-bottom: 10px;
             text-align: center;
-            box-shadow: 0 6px 6px #efefef;
+            box-shadow: 0 6px 6px #c1c1c1;
             border-radius: 10px;
         }
 
         .btn {
-            margin-right: 10px;
+            //margin: 10px;
         }
     }
 </style>

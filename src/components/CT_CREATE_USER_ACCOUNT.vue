@@ -7,8 +7,7 @@
             </b-col>
         </b-row>
         <b-row no-gutters>
-            <b-col md="1"></b-col>
-            <b-col md="10">
+            <b-col md="12">
                 <b-form @submit="onSubmit" id="form_register" @reset="onReset" v-if="show" class="mb-3"
                         style="margin-top: 27px;">
                     <b-form-group id="input-group-2" label="Personal Info" label-for="input-2">
@@ -103,23 +102,32 @@
                         </div>
                     </b-form-group>
 
-                    <i v-if="rf_loading" class="fas fa-spinner fa-2x fa-spin"></i>
+                    <b-spinner v-if="rf_loading" style="width: 2rem; height: 2rem;" label="Large Spinner" type="grow"></b-spinner>
                     <div v-else>
                         <b-button type="submit" variant="primary">Submit</b-button>
                         <b-button type="reset" variant="danger">Reset</b-button>
                     </div>
                 </b-form>
+                <b-row>
+                    <b-col md="12">
+                        <div class="d-flex justify-content-between">
+                            <b-button size="sm" type="button" :to="'login'" variant="outline-dark">Login</b-button>
+                            <b-button size="sm" type="button" :to="'password-recovery'" variant="outline-warning">Forgot Password ?</b-button>
+                        </div>
+                    </b-col>
+                </b-row>
             </b-col>
-            <b-col md="1"></b-col>
         </b-row>
     </div>
     <b-row no-gutters v-else class="CT_CREATE_USER_ACCOUNT">
-        <b-col md="12" v-if="title">
-            <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
+        <b-col md="12">
+            <div class="mockup-container">
+                <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
+            </div>
         </b-col>
         <b-col md="12">
-            <div class="mockup-paragraph">
-                <div class="mockup-img" style="height: 350px;"></div>
+            <div class="mockup-container">
+                <div class="mockup-img" style="height: 270px;"></div>
             </div>
         </b-col>
     </b-row>
@@ -258,12 +266,12 @@
             font-size: 30px;
             padding-bottom: 10px;
             text-align: center;
+            box-shadow: 0 6px 6px #c1c1c1;
             border-radius: 10px;
-            box-shadow: 0 6px 6px #efefef;
         }
 
         .btn {
-            margin-right: 10px;
+            //margin-right: 10px;
         }
     }
 </style>

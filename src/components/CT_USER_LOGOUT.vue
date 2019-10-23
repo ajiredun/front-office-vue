@@ -14,16 +14,13 @@
             </b-col>
         </b-row>
     </div>
-    <div v-else :id="'MOCKUP_CT_USER_LOGOUT_'+blockInfo.id" class="CT_TEMPLATE">
+    <div v-else :id="'MOCKUP_CT_USER_LOGOUT_'+blockInfo.id" class="CT_USER_LOGOUT">
         <b-row>
             <b-col md="12">
-                <div class="mockup-paragraph">
+                <div class="mockup-container">
                     <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
-                    <div class="mockup-text-line"></div>
-                    <div class="mockup-text-line"></div>
-                    <div class="mockup-text-line"></div>
-                    <div class="mockup-text-line"></div>
-                    <div class="mockup-text-line"></div>
+                    <i class="fas fa-spinner fa-3x fa-spin mockup-spinner"></i>
+                    <div class="mockup-img"></div>
                 </div>
             </b-col>
         </b-row>

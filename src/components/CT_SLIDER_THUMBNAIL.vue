@@ -130,7 +130,9 @@
     <div v-else :id="'MOCKUP_CT_SLIDER_THUMBNAIL_'+blockInfo.id" class="CT_SLIDER_THUMBNAIL">
         <b-row>
             <b-col md="12">
-                <div class="mockup-text-line" style="height:25px;"></div>
+                <div class="mockup-container">
+                    <div class="mockup-text-line" style="height:25px;"></div>
+                </div>
             </b-col>
             <b-col md="12" no-gutters>
                 <b-row>

@@ -1,7 +1,7 @@
 <template>
     <div :id="'CT_TEMPLATE_'+blockInfo.id" v-if="switchToReal" :class="'CT_TEMPLATE ' + displays">
-        <b-row no-gutters>
-            <b-col md="12" class="rf-block-title rf-primary" v-if="title">
+        <b-row no-gutters  v-if="title">
+            <b-col md="12" class="rf-block-title rf-primary">
                 <h2 class="title">{{title}}</h2>
             </b-col>
         </b-row>
@@ -12,10 +12,8 @@
     <div v-else :id="'MOCKUP_CT_TEMPLATE_'+blockInfo.id"  class="CT_TEMPLATE">
         <b-row>
             <b-col md="12">
-                <div class="mockup-paragraph">
+                <div class="mockup-container">
                     <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
-                    <div class="mockup-text-line"></div>
-                    <div class="mockup-text-line"></div>
                     <div class="mockup-text-line"></div>
                     <div class="mockup-text-line"></div>
                     <div class="mockup-text-line"></div>

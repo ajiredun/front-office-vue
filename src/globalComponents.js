@@ -8,6 +8,7 @@ import CT_CREATE_USER_ACCOUNT from '@/components/CT_CREATE_USER_ACCOUNT.vue'
 import CT_USER_ACTIVATE_ACCOUNT from '@/components/CT_USER_ACTIVATE_ACCOUNT.vue'
 import CT_USER_LOGIN from '@/components/CT_USER_LOGIN.vue'
 import CT_USER_LOGOUT from '@/components/CT_USER_LOGOUT.vue'
+import CT_USER_PASSWORD_FORGET from '@/components/CT_USER_PASSWORD_FORGET.vue'
 
 export default {
     'rf-slot':SLOT,
@@ -19,5 +20,6 @@ export default {
     'CT_CREATE_USER_ACCOUNT': CT_CREATE_USER_ACCOUNT,
     'CT_USER_ACTIVATE_ACCOUNT': CT_USER_ACTIVATE_ACCOUNT,
     'CT_USER_LOGIN': CT_USER_LOGIN,
-    'CT_USER_LOGOUT': CT_USER_LOGOUT
+    'CT_USER_LOGOUT': CT_USER_LOGOUT,
+    'CT_USER_PASSWORD_FORGET': CT_USER_PASSWORD_FORGET
 }

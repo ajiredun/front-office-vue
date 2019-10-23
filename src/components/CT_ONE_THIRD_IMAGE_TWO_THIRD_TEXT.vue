@@ -17,14 +17,17 @@
     <div v-else class="CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT">
         <b-row>
             <b-col md="12">
-                <div class="mockup-text-line" style="height:25px;"></div>
+                <div class="mockup-container">
+                    <div class="mockup-text-line" style="height:25px;"></div>
+                </div>
             </b-col>
             <b-col md="4">
-                <div class="mockup-img"></div>
+                <div class="mockup-container">
+                    <div class="mockup-img"></div>
+                </div>
             </b-col>
             <b-col md="8">
-                <div class="mockup-paragraph">
-                    <div class="mockup-text-line"></div>
+                <div class="mockup-container">
                     <div class="mockup-text-line"></div>
                     <div class="mockup-text-line"></div>
                     <div class="mockup-text-line"></div>

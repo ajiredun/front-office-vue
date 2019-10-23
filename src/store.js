@@ -19,6 +19,7 @@ export default new Vuex.Store({
             userRegister: "https://back.dev.ajiredun.com/api/register",
             userLogin: "https://back.dev.ajiredun.com/api/login",
             userLogout: "https://back.dev.ajiredun.com/api/logout",
+            userForgetPassword: "https://back.dev.ajiredun.com/api/forgot-password",
             userActivateAccount: "https://back.dev.ajiredun.com/api/activate",
         },
         authentication: {
