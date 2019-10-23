@@ -115,7 +115,7 @@
     </div>
     <b-row no-gutters v-else class="CT_CREATE_USER_ACCOUNT">
         <b-col md="12" v-if="title">
-            <div class="mockup-text-line" style="height:25px;"></div>
+            <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
         </b-col>
         <b-col md="12">
             <div class="mockup-paragraph">
@@ -126,29 +126,14 @@
 </template>
 
 <script>
-    import {mapState, mapGetters} from 'vuex';
     import axios from 'axios'
+    import componentLifecycle from '@/services/componentLifecycle.js'
 
     export default {
-        props: {
-            currentSlotId: String,
-            blockInfo: Object
-        },
-        computed: {
-            ...mapState(['blockDataChanged']),
-            ...mapGetters([
-                'getCurrentUserInfo',
-                'isAuthorized',
-                'isAuthenticated',
-                'getUrlToken'
-            ])
-        },
+        extends: componentLifecycle,
         data() {
             return {
-                switchToReal: false,
                 rf_loading: false,
-                title: false,
-                displays: '',
                 form: {
                     input_email: '',
                     input_firstname: '',
@@ -168,20 +153,18 @@
         },
         methods: {
             processData(block) {
-                console.log("Processing CT_CREATE_USER_ACCOUNT block: " + block.id)
-                console.log(block)
+                //console.log("Processing CT_CREATE_USER_ACCOUNT block: " + block.id)
+                //console.log(block)
                 let properties = block.properties
+                this.mapBasicBlockProperties(properties)
 
-                if (properties.displays) {
-                    this.displays = properties.displays.join(' ')
+                if (this.isAuthenticated) {
+                    this.error_info = "You are already logged in. You should log out first."
+                    return false
+                } else {
+                    //do all the necessary and then change the response
+                    this.switchToReal = true
                 }
-
-                if (properties.title) {
-                    this.title = properties.title
-                }
-
-                //do all the necessary and then change the response
-                this.switchToReal = true
             },
             onSubmit(evt) {
                 evt.preventDefault()
@@ -253,23 +236,6 @@
                 this.$nextTick(() => {
                     this.show = true
                 })
-            }
-        },
-        mounted() {
-            let url = this.$store.state.api.getBlockData + this.blockInfo.id
-            let params = {
-                url: url,
-                id: this.blockInfo.id,
-                ct: this.blockInfo.contentType
-            }
-            this.$store.dispatch('loadBlockData', params)
-        },
-        watch: {
-            blockDataChanged(blockDataChanged) {
-                if (this.$store.state.blockDataChanged == this.blockInfo.id) {
-                    let block = this.$store.getters.blockData[this.blockInfo.id]
-                    this.processData(block)
-                }
             }
         },
     }

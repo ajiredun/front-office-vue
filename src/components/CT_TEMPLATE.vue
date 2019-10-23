@@ -13,7 +13,7 @@
         <b-row>
             <b-col md="12">
                 <div class="mockup-paragraph">
-                    <div class="mockup-text-line"></div>
+                    <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
                     <div class="mockup-text-line"></div>
                     <div class="mockup-text-line"></div>
                     <div class="mockup-text-line"></div>
@@ -26,64 +26,27 @@
 </template>
 
 <script>
-    import {mapState, mapGetters} from 'vuex';
+    import axios from 'axios'
+    import componentLifecycle from '@/services/componentLifecycle.js'
 
     export default {
-        props: {
-            currentSlotId: String,
-            blockInfo: Object
-        },
-        computed: {
-            ...mapState(['blockDataChanged']),
-            ...mapGetters([
-                'getCurrentUserInfo',
-                'isAuthorized',
-                'isAuthenticated',
-                'getUrlToken'
-            ])
-        },
+        extends: componentLifecycle,
         data() {
             return {
-                switchToReal: false,
-                title: false,
-                displays: '',
             };
         },
         methods: {
             processData(block) {
-                console.log("Processing Half Image Half Text block: " + block.id)
+                console.log("Processing TEMPLATE block: " + block.id)
                 console.log(block)
                 let properties = block.properties
+                this.mapBasicBlockProperties(properties)
 
-                if (properties.title) {
-                    this.title = properties.title
-                }
 
-                if (properties.displays) {
-                    this.displays = properties.displays.join(' ')
-                }
-
-                //do all the necessary and then change the response
+                //do all the necessary and then switch
                 this.switchToReal = true
             }
-        },
-        mounted() {
-            let url = this.$store.state.api.getBlockData + this.blockInfo.id
-            let params = {
-                url: url,
-                id: this.blockInfo.id,
-                ct: this.blockInfo.contentType
-            }
-            this.$store.dispatch('loadBlockData', params)
-        },
-        watch: {
-            blockDataChanged(blockDataChanged) {
-                if (this.$store.state.blockDataChanged == this.blockInfo.id) {
-                    let block = this.$store.getters.blockData[this.blockInfo.id]
-                    this.processData(block)
-                }
-            }
-        },
+        }
     }
 </script>
 

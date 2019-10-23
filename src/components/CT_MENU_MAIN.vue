@@ -14,7 +14,7 @@
                     <b-nav-item to="/login">Login</b-nav-item>
                     <b-nav-item to="/register">Create Account</b-nav-item>
                     <b-nav-item to="/profile">My Account</b-nav-item>
-                    <b-nav-item to="/about-us">{{ blockInfo.contentType }}</b-nav-item>
+                    <b-nav-item to="/logout">Logout</b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->
@@ -71,55 +71,22 @@
 </template>
 
 <script>
-    import {mapState, mapGetters} from 'vuex';
+    import axios from 'axios'
+    import componentLifecycle from '@/services/componentLifecycle.js'
 
     export default {
-        props: {
-            currentSlotId: String,
-            blockInfo: Object
-        },
-        computed: {
-            ...mapState(['blockDataChanged']),
-            ...mapGetters([
-                'getCurrentUserInfo',
-                'isAuthorized',
-                'isAuthenticated',
-                'getUrlToken'
-            ])
-        },
+        extends: componentLifecycle,
         data() {
             return {
-                switchToReal: false,
-                displays: '',
             };
         },
         methods: {
             processData(block) {
 
                 let properties = block.properties
-
-                if (properties.displays) {
-                    this.displays = properties.displays.join(' ')
-                }
+                this.mapBasicBlockProperties(properties)
 
                 this.switchToReal = true
-            }
-        },
-        mounted() {
-            let url = this.$store.state.api.getBlockData + this.blockInfo.id
-            let params = {
-                url: url,
-                id: this.blockInfo.id,
-                ct: this.blockInfo.contentType
-            }
-            this.$store.dispatch('loadBlockData', params)
-        },
-        watch: {
-            blockDataChanged(blockDataChanged) {
-                if (this.$store.state.blockDataChanged == this.blockInfo.id) {
-                    let block = this.$store.getters.blockData[this.blockInfo.id]
-                    this.processData(block)
-                }
             }
         },
     }

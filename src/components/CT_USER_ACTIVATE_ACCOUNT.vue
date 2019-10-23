@@ -21,7 +21,7 @@
         <b-row>
             <b-col md="12">
                 <div class="mockup-paragraph">
-                    <div class="mockup-text-line" style="height:25px;"></div>
+                    <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
                     <i class="fas fa-spinner fa-3x fa-spin mockup-spinner"></i>
                 </div>
             </b-col>
@@ -30,50 +30,32 @@
 </template>
 
 <script>
-    import {mapState, mapGetters} from 'vuex';
     import axios from 'axios'
+    import componentLifecycle from '@/services/componentLifecycle.js'
     import router from '@/router'
 
     export default {
-        props: {
-            currentSlotId: String,
-            blockInfo: Object
-        },
-        computed: {
-            ...mapState(['blockDataChanged']),
-            ...mapGetters([
-                'getCurrentUserInfo',
-                'isAuthorized',
-                'isAuthenticated',
-                'getUrlToken'
-            ])
-        },
+        extends: componentLifecycle,
         data() {
             return {
-                switchToReal: false,
-                title: false,
-                displays: '',
                 error_message: false,
                 follow_up: false
             };
         },
         methods: {
             processData(block) {
-                console.log("Processing User Activation block: " + block.id)
-                console.log(block)
+                //console.log("Processing User Activation block: " + block.id)
+                //console.log(block)
                 let properties = block.properties
+                this.mapBasicBlockProperties(properties)
 
-                if (properties.title) {
-                    this.title = properties.title
+                if (this.isAuthenticated) {
+                    this.error_info = "You are already logged in. You should log out first."
+                    return false
+                } else {
+                    //do all the necessary and then change the response
+                    this.switchToReal = true
                 }
-
-                if (properties.displays) {
-                    this.displays = properties.displays.join(' ')
-                }
-
-                //do all the necessary and then change the response
-                this.switchToReal = true
-
 
                 if (!this.$route.params.activation_token) {
                     this.error_message = "Invalid activation link"
@@ -118,27 +100,9 @@
                             console.log('Error activating the account: ' + error)
                         });
 
-
                 }
             }
-        },
-        mounted() {
-            let url = this.$store.state.api.getBlockData + this.blockInfo.id
-            let params = {
-                url: url,
-                id: this.blockInfo.id,
-                ct: this.blockInfo.contentType
-            }
-            this.$store.dispatch('loadBlockData', params)
-        },
-        watch: {
-            blockDataChanged(blockDataChanged) {
-                if (this.$store.state.blockDataChanged == this.blockInfo.id) {
-                    let block = this.$store.getters.blockData[this.blockInfo.id]
-                    this.processData(block)
-                }
-            }
-        },
+        }
     }
 </script>
 

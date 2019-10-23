@@ -66,7 +66,7 @@
     <div no-gutters v-else :id="'MOCKUP_CT_USER_LOGIN_'+blockInfo.id"  class="CT_USER_LOGIN">
         <b-row>
             <b-col md="12">
-                <div class="mockup-text-line" style="height:25px;"></div>
+                <div class="mockup-text-line"><p class="simple-paragraph">{{ error_info }}</p></div>
             </b-col>
             <b-col md="12">
                 <div class="mockup-img" style="height: 350px;"></div>
@@ -76,28 +76,13 @@
 </template>
 
 <script>
-    import {mapState, mapGetters} from 'vuex';
     import axios from 'axios'
+    import componentLifecycle from '@/services/componentLifecycle.js'
 
     export default {
-        props: {
-            currentSlotId: String,
-            blockInfo: Object
-        },
-        computed: {
-            ...mapState(['blockDataChanged']),
-            ...mapGetters([
-                'getCurrentUserInfo',
-                'isAuthorized',
-                'isAuthenticated',
-                'getUrlToken'
-            ])
-        },
+        extends: componentLifecycle,
         data() {
             return {
-                switchToReal: false,
-                title: false,
-                displays: '',
                 rf_loading: false,
                 form: {
                     input_email: '',
@@ -110,26 +95,23 @@
         },
         methods: {
             processData(block) {
-                console.log("Processing User Login block: " + block.id)
-                console.log(block)
+                //console.log("Processing User Login block: " + block.id)
+                //console.log(block)
                 let properties = block.properties
+                this.mapBasicBlockProperties(properties)
 
-                if (properties.title) {
-                    this.title = properties.title
+
+                if (this.isAuthenticated) {
+                    this.error_info = "You are already logged in. You should log out first."
+                    return false
+                } else {
+                    //do all the necessary and then change the response
+                    this.switchToReal = true
                 }
-
-                if (properties.displays) {
-                    this.displays = properties.displays.join(' ')
-                }
-
-                //do all the necessary and then change the response
-                this.switchToReal = true
             },
             onSubmit(evt) {
                 evt.preventDefault()
                 this.rf_loading = true
-
-                console.log(localStorage.getItem('rf-storage'))
 
                 const formData = new FormData();
                 formData.append('email', this.form.input_email);
@@ -142,7 +124,7 @@
                         //this.follow_up = "HELL YEAH"
                         if (data.success) {
                             this.error_message = false
-                            this.follow_up = "Hell Yeah"
+                            this.follow_up = "Logged In."
                             let userInfo = {
                                 email: data.email,
                                 token: data.token,
@@ -155,6 +137,12 @@
                             //console.log(this.isAuthenticated)
                             //console.log(this.isAuthorized('ROLE_USER'))
 
+                            if (!this.$route.query.redirectUrl) {
+                                window.location.href = this.$store.state.frontOfficeUrl;
+                            } else {
+                                let redirectUrl = this.$route.query.redirectUrl
+                                window.location.href = redirectUrl;
+                            }
                         } else {
                             this.follow_up = false
                             this.error_message = data.message
@@ -185,25 +173,7 @@
                         this.rf_loading = false
                     });
             },
-        },
-        mounted() {
-            let url = this.$store.state.api.getBlockData + this.blockInfo.id
-            let params = {
-                url: url,
-                id: this.blockInfo.id,
-                ct: this.blockInfo.contentType
-            }
-
-            this.$store.dispatch('loadBlockData', params)
-        },
-        watch: {
-            blockDataChanged(blockDataChanged) {
-                if (this.$store.state.blockDataChanged == this.blockInfo.id) {
-                    let block = this.$store.getters.blockData[this.blockInfo.id]
-                    this.processData(block)
-                }
-            }
-        },
+        }
     }
 </script>
 

@@ -7,6 +7,7 @@ import CT_SLIDER_THUMBNAIL from '@/components/CT_SLIDER_THUMBNAIL.vue'
 import CT_CREATE_USER_ACCOUNT from '@/components/CT_CREATE_USER_ACCOUNT.vue'
 import CT_USER_ACTIVATE_ACCOUNT from '@/components/CT_USER_ACTIVATE_ACCOUNT.vue'
 import CT_USER_LOGIN from '@/components/CT_USER_LOGIN.vue'
+import CT_USER_LOGOUT from '@/components/CT_USER_LOGOUT.vue'
 
 export default {
     'rf-slot':SLOT,
@@ -17,5 +18,6 @@ export default {
     'CT_SLIDER_THUMBNAIL': CT_SLIDER_THUMBNAIL,
     'CT_CREATE_USER_ACCOUNT': CT_CREATE_USER_ACCOUNT,
     'CT_USER_ACTIVATE_ACCOUNT': CT_USER_ACTIVATE_ACCOUNT,
-    'CT_USER_LOGIN': CT_USER_LOGIN
+    'CT_USER_LOGIN': CT_USER_LOGIN,
+    'CT_USER_LOGOUT': CT_USER_LOGOUT
 }

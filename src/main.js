@@ -25,11 +25,12 @@ new Vue({
             }).catch(error => {
                 if (error.response) {
                     let status = error.response.status
+                    if (status == 401) {
+                        this.$store.dispatch('removeAuthInfo')
+                        window.location.reload(true)
+                    }
                     console.warn('An error occurred while fetching pages')
-                    return 'An error occurred while fetching pages'
                 }
-
-                return 'An error occurred while fetching pages'
             })
         },
         processData(response) {
@@ -61,7 +62,22 @@ new Vue({
         }
     },
     created() {
-        this.getDynamicRoutes(this.$store.state.api.pageRoutes + "&" + this.$store.getters.getUrlToken)
+
+        //setting the state.authentication from localstorage
+        if (localStorage.getItem('rf-storage') != null) {
+            let auths = JSON.parse(localStorage.getItem('rfstorage'))
+            if (auths !== undefined && auths !== null && auths.length !== 0) {
+                this.$store.dispatch('setAuthInfo', auths)
+            }
+        }
+
+        if (this.$store.getters.isAuthenticated) {
+            console.log("User: "+ this.$store.getters.getCurrentUserInfo.email)
+        } else {
+            console.log("User: Anonymous")
+        }
+
+        this.getDynamicRoutes(this.$store.state.api.pageRoutes)
     },
     render: h => h(App)
 }).$mount('#app')

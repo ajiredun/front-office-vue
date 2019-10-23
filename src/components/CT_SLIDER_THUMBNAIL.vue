@@ -127,7 +127,7 @@
             </carousel>
         </b-col>
     </b-row>
-    <div v-else class="CT_SLIDER_THUMBNAIL">
+    <div v-else :id="'MOCKUP_CT_SLIDER_THUMBNAIL_'+blockInfo.id" class="CT_SLIDER_THUMBNAIL">
         <b-row>
             <b-col md="12">
                 <div class="mockup-text-line" style="height:25px;"></div>
@@ -153,28 +153,14 @@
 </template>
 
 <script>
-    import {mapState, mapGetters} from 'vuex';
+    import axios from 'axios'
+    import componentLifecycle from '@/services/componentLifecycle.js'
     import {Carousel, Slide} from 'vue-carousel';
 
     export default {
-        props: {
-            currentSlotId: String,
-            blockInfo: Object
-        },
-        computed: {
-            ...mapState(['blockDataChanged']),
-            ...mapGetters([
-                'getCurrentUserInfo',
-                'isAuthorized',
-                'isAuthenticated',
-                'getUrlToken'
-            ])
-        },
+        extends: componentLifecycle,
         data() {
             return {
-                switchToReal: false,
-                displays: '',
-                title: false,
                 autoplay: true,
                 autoplayTimeout: 3000,
                 slideQtyInMobile: 1,
@@ -222,17 +208,10 @@
 
                 // carousel docs
                 // :: https://ssense.github.io/vue-carousel/api/
-                console.log("Processing CT_SLIDER_THUMBNAIL: " + block.id)
-                console.log(block)
+                //console.log("Processing CT_SLIDER_THUMBNAIL: " + block.id)
+                //console.log(block)
                 let properties = block.properties
-
-                if (properties.title) {
-                    this.title = properties.title
-                }
-
-                if (properties.displays) {
-                    this.displays = properties.displays.join(' ')
-                }
+                this.mapBasicBlockProperties(properties)
 
                 if (properties.autoplay) {
                     this.autoplay = properties.autoplay;
@@ -355,23 +334,6 @@
                 }
 
                 this.switchToReal = true
-            }
-        },
-        mounted() {
-            let url = this.$store.state.api.getBlockData + this.blockInfo.id
-            let params = {
-                url: url,
-                id: this.blockInfo.id,
-                ct: this.blockInfo.contentType
-            }
-            this.$store.dispatch('loadBlockData', params)
-        },
-        watch: {
-            blockDataChanged(blockDataChanged) {
-                if (this.$store.state.blockDataChanged == this.blockInfo.id) {
-                    let block = this.$store.getters.blockData[this.blockInfo.id]
-                    this.processData(block)
-                }
             }
         },
     }
