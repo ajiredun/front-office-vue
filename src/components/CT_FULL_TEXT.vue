@@ -1,6 +1,6 @@
 <template>
-    <b-row :id="'CT_FULL_TEXT'+blockInfo.id"  v-if="switchToReal" :class="'CT_FULL_TEXT ' + displays" >
-        <b-col class="rf-block-title"  md="12" v-if="title">
+    <b-row :id="'CT_FULL_TEXT'+blockInfo.id" v-if="switchToReal" :class="'CT_FULL_TEXT ' + displays">
+        <b-col class="rf-block-title" md="12" v-if="title">
             <h2 class="title">{{title}}</h2>
         </b-col>
         <b-col md="12" v-html="text">
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapGetters} from 'vuex';
 
     export default {
         props: {
@@ -36,13 +36,19 @@
             blockInfo: Object
         },
         computed: {
-            ...mapState(['blockDataChanged'])
+            ...mapState(['blockDataChanged']),
+            ...mapGetters([
+                'getCurrentUserInfo',
+                'isAuthorized',
+                'isAuthenticated',
+                'getUrlToken'
+            ])
         },
         data() {
             return {
                 switchToReal: false,
                 displays: '',
-                image : false,
+                image: false,
                 side: 'left',
                 text: false,
                 title: false
@@ -73,7 +79,8 @@
             let url = this.$store.state.api.getBlockData + this.blockInfo.id
             let params = {
                 url: url,
-                id: this.blockInfo.id
+                id: this.blockInfo.id,
+                ct: this.blockInfo.contentType
             }
             this.$store.dispatch('loadBlockData', params)
         },
@@ -90,9 +97,9 @@
 
 <style lang="scss">
     .CT_FULL_TEXT {
-        margin:0;
-        padding:0;
+        margin: 0;
+        padding: 0;
         padding-bottom: 15px;
-        padding-top:15px;
+        padding-top: 15px;
     }
 </style>

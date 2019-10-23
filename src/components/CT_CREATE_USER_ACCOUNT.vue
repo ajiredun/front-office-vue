@@ -126,7 +126,7 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapGetters} from 'vuex';
     import axios from 'axios'
 
     export default {
@@ -135,7 +135,13 @@
             blockInfo: Object
         },
         computed: {
-            ...mapState(['blockDataChanged'])
+            ...mapState(['blockDataChanged']),
+            ...mapGetters([
+                'getCurrentUserInfo',
+                'isAuthorized',
+                'isAuthenticated',
+                'getUrlToken'
+            ])
         },
         data() {
             return {
@@ -197,31 +203,31 @@
                     input_confirm_password: this.form.input_confirm_password
                 })
                     .then((response) => {
-                        let status = response.status
-                        if (status == 200) {
-                            let data = response.data
-                            if (data.success) {
-                                this.response.success = data.success;
-                                this.response.message = data.message;
-                            } else {
-                                this.response.success = data.success;
-                                this.response.message = data.message;
-                            }
+                        let data = response.data
+                        if (data.success) {
+                            this.response.success = data.success;
+                            this.response.message = data.message;
                         } else {
-                            if (status == 403) {
-                                console.log('User do not have access to block: ' + blockId)
-                            } else {
-                                if (status == 404) {
-                                    console.log('Block not found: ' + blockId)
-                                } else {
-                                    console.log('Error loading block: ' + blockId)
-                                }
-                            }
+                            this.response.success = data.success;
+                            this.response.message = data.message;
                         }
                         this.rf_loading = false
                     })
                     .catch((error) => {
-                        console.log('Error loading block: ' + error)
+                        let status = error.response.status
+                        if (status == 403) {
+                            console.log('User do not have access to block')
+                        } else {
+                            if (status == 404) {
+                                console.log('Block not found')
+                            } else {
+                                if (status == 401) {
+                                    console.log('Unauthorized access')
+                                } else {
+                                    console.log('Error loading block')
+                                }
+                            }
+                        }
                         this.rf_loading = false
                     });
             },
@@ -253,7 +259,8 @@
             let url = this.$store.state.api.getBlockData + this.blockInfo.id
             let params = {
                 url: url,
-                id: this.blockInfo.id
+                id: this.blockInfo.id,
+                ct: this.blockInfo.contentType
             }
             this.$store.dispatch('loadBlockData', params)
         },
@@ -271,13 +278,13 @@
 <style lang="scss">
     .CT_CREATE_USER_ACCOUNT {
         border-radius: 10px;
-        max-width:450px;
+        max-width: 450px;
         margin-right: auto;
         margin-left: auto;
 
         .form-control {
-            margin-top:10px;
-            margin-bottom:10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .rf-block-title {
@@ -288,8 +295,9 @@
             border-radius: 10px;
             box-shadow: 0 6px 6px #efefef;
         }
+
         .btn {
-            margin-right:10px;
+            margin-right: 10px;
         }
     }
 </style>

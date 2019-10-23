@@ -22,44 +22,46 @@ new Vue({
         getDynamicRoutes(url) {
             axios.get(url).then((response) => {
                 this.processData(response)
-            }).catch(err => console.log(err))
-        },
-        processData (response) {
-            let status = response.status
-            if (status == 200) {
-                let data = response.data['hydra:member']
-
-                console.log(data)
-
-                data.forEach((route) => {
-
-                    let routing = route.route
-                    if (route.routeParams) {
-                        routing = routing+ route.routeParams
-                    }
-                    let newRoute = {
-                        path: `${routing}`,
-                        component: () => import( './views/'+route.layout.code+'.vue'),
-                        name: `${route.name}`,
-                        props: {pageInfo: route}
-                    }
-                    this.$router.addRoutes([newRoute])
-
-                })
-
-                let wildRoute = {
-                    path: '/**',
-                    name: 'NotFound',
-                    component: () => import('./views/NotFound.vue')
+            }).catch(error => {
+                if (error.response) {
+                    let status = error.response.status
+                    console.warn('An error occurred while fetching pages')
+                    return 'An error occurred while fetching pages'
                 }
-                this.$router.addRoutes([wildRoute])
-            } else {
-                console.log('Error fetching paths')
+
+                return 'An error occurred while fetching pages'
+            })
+        },
+        processData(response) {
+            let data = response.data['hydra:member']
+
+            console.log(data)
+
+            data.forEach((route) => {
+                let routing = route.route
+                if (route.routeParams) {
+                    routing = routing + route.routeParams
+                }
+                let newRoute = {
+                    path: `${routing}`,
+                    component: () => import( './views/' + route.layout.code + '.vue'),
+                    name: `${route.name}`,
+                    props: {pageInfo: route}
+                }
+                this.$router.addRoutes([newRoute])
+            })
+
+            let wildRoute = {
+                path: '/**',
+                name: 'NotFound',
+                component: () => import('./views/NotFound.vue')
             }
+            this.$router.addRoutes([wildRoute])
+
         }
     },
     created() {
-        this.getDynamicRoutes(this.$store.state.api.pageRoutes)
+        this.getDynamicRoutes(this.$store.state.api.pageRoutes + "&" + this.$store.getters.getUrlToken)
     },
     render: h => h(App)
 }).$mount('#app')

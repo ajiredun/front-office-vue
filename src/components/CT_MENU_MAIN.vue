@@ -2,7 +2,8 @@
     <div v-if="switchToReal" :class="'CT_MENU_MAIN ' + displays">
         <b-navbar toggleable="lg" sticky="true" type="light" variant="white">
             <b-navbar-brand to="/">
-                <b-img class="nav-logo" blank-color="#777" :src="this.$store.state.frontOfficeUrl +'/img/logo.png'"></b-img>
+                <b-img class="nav-logo" blank-color="#777"
+                       :src="this.$store.state.frontOfficeUrl +'/img/logo.png'"></b-img>
             </b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -70,7 +71,7 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapGetters} from 'vuex';
 
     export default {
         props: {
@@ -78,7 +79,13 @@
             blockInfo: Object
         },
         computed: {
-            ...mapState(['blockDataChanged'])
+            ...mapState(['blockDataChanged']),
+            ...mapGetters([
+                'getCurrentUserInfo',
+                'isAuthorized',
+                'isAuthenticated',
+                'getUrlToken'
+            ])
         },
         data() {
             return {
@@ -102,7 +109,8 @@
             let url = this.$store.state.api.getBlockData + this.blockInfo.id
             let params = {
                 url: url,
-                id: this.blockInfo.id
+                id: this.blockInfo.id,
+                ct: this.blockInfo.contentType
             }
             this.$store.dispatch('loadBlockData', params)
         },
@@ -123,9 +131,11 @@
             width: 50px;
             height: 50px;
         }
+
         .navbar-toggler {
             border: none;
         }
+
         .navbar {
             margin-top: 5px;
             margin-bottom: 15px;

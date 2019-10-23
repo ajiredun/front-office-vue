@@ -1,5 +1,6 @@
 <template>
-    <div :id="'CT_USER_LOGIN_'+blockInfo.id" v-if="switchToReal" :class="'CT_USER_LOGIN rf-title-margin-div ' + displays">
+    <div :id="'CT_USER_LOGIN_'+blockInfo.id" v-if="switchToReal"
+         :class="'CT_USER_LOGIN rf-title-margin-div ' + displays">
         <b-row no-gutters class="rf-title-margin">
             <b-col md="12" class="rf-block-title rf-neutral rf-background-secondary" v-if="title">
                 <h2 class="title">{{title}}</h2>
@@ -40,37 +41,42 @@
                         </b-row>
                     </b-form-group>
 
-                    <b-button  v-if="rf_loading"  type="button" class="btn-block" variant="neutral"><i class="fas fa-spinner fa-2x fa-spin"></i></b-button>
+                    <b-button v-if="rf_loading" type="button" class="btn-block" variant="neutral"><i
+                            class="fas fa-spinner fa-2x fa-spin"></i></b-button>
                     <div v-else>
                         <b-button type="submit" class="btn-block" variant="primary">Login</b-button>
                     </div>
                 </b-form>
-                <b-row no-gutters v-if="error_message" >
+                <b-row v-if="error_message">
                     <b-col md="12" class="rf-warning">
-                        <p><i class="fas fa-exclamation-triangle fa-2x" /> {{error_message}}</p>
+                        <p><i class="fas fa-exclamation-triangle fa-2x"/> {{error_message}}</p>
                     </b-col>
                 </b-row>
+                <div v-else></div>
                 <b-row v-if="follow_up">
-                    <b-col md="12" class="rf-secondary">
+                    <b-col md="12" class="rf-success">
                         <p>{{follow_up}}</p>
                     </b-col>
                 </b-row>
+                <div v-else></div>
             </b-col>
             <b-col md="1"></b-col>
         </b-row>
     </div>
-    <b-row no-gutters v-else class="CT_USER_LOGIN">
-        <b-col md="12">
-            <div class="mockup-text-line" style="height:25px;"></div>
-        </b-col>
-        <b-col md="12">
-            <div class="mockup-img" style="height: 350px;"></div>
-        </b-col>
-    </b-row>
+    <div no-gutters v-else :id="'MOCKUP_CT_USER_LOGIN_'+blockInfo.id"  class="CT_USER_LOGIN">
+        <b-row>
+            <b-col md="12">
+                <div class="mockup-text-line" style="height:25px;"></div>
+            </b-col>
+            <b-col md="12">
+                <div class="mockup-img" style="height: 350px;"></div>
+            </b-col>
+        </b-row>
+    </div>
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapGetters} from 'vuex';
     import axios from 'axios'
 
     export default {
@@ -79,7 +85,13 @@
             blockInfo: Object
         },
         computed: {
-            ...mapState(['blockDataChanged'])
+            ...mapState(['blockDataChanged']),
+            ...mapGetters([
+                'getCurrentUserInfo',
+                'isAuthorized',
+                'isAuthenticated',
+                'getUrlToken'
+            ])
         },
         data() {
             return {
@@ -93,7 +105,7 @@
                 },
                 show: true,
                 error_message: false,
-                follow_up:false
+                follow_up: false
             };
         },
         methods: {
@@ -117,33 +129,57 @@
                 evt.preventDefault()
                 this.rf_loading = true
 
-                axios.post(this.$store.state.api.userLogin, {
-                    email: this.form.input_email,
-                    password: this.form.input_password
-                })
+                console.log(localStorage.getItem('rf-storage'))
+
+                const formData = new FormData();
+                formData.append('email', this.form.input_email);
+                formData.append('password', this.form.input_password);
+
+                axios.post(this.$store.state.api.userLogin, formData)
                     .then((response) => {
-                        let status = response.status
-                        if (status == 200) {
-                            //let data = response.data
-                            console.log(response)
-                            this.follow_up = "HELL YEAH"
+                        let data = response.data
+                        //console.log(response)
+                        //this.follow_up = "HELL YEAH"
+                        if (data.success) {
+                            this.error_message = false
+                            this.follow_up = "Hell Yeah"
+                            let userInfo = {
+                                email: data.email,
+                                token: data.token,
+                                roles: data.roles,
+                                user_id: data.user_id,
+                                user_name: data.user_name,
+                            }
+                            this.$store.dispatch('setAuthInfo', userInfo)
+                            //console.log(this.getCurrentUserInfo)
+                            //console.log(this.isAuthenticated)
+                            //console.log(this.isAuthorized('ROLE_USER'))
+
                         } else {
-                            if (status == 403) {
-                                this.error_message = 'You do not have access to this contet'
-                                console.log('User do not have access to block: ' + blockId)
+                            this.follow_up = false
+                            this.error_message = data.message
+                        }
+                        this.rf_loading = false
+                    })
+                    .catch((error) => {
+                        let status = error.response.status
+                        if (status == 403) {
+                            this.error_message = 'You do not have access to this contet'
+                            console.log('User do not have access to block: ' + blockId)
+                        } else {
+                            if (status == 404) {
+                                this.error_message = 'An error occured while trying to sign you in. '
+                                console.log('Block not found: ' + blockId)
                             } else {
-                                if (status == 404) {
-                                    this.error_message = 'An error occured while trying to sign you in. '
-                                    console.log('Block not found: ' + blockId)
+                                if (status == 401) {
+                                    this.error_message = 'Invalid Credentials. Please contact us'
+                                    console.log('Error 401 while logging: ' + response.data.message)
                                 } else {
                                     this.error_message = 'An error occured while trying to sign you in. '
                                     console.log('Error loading block: ' + blockId)
                                 }
                             }
                         }
-                        this.rf_loading = false
-                    })
-                    .catch((error) => {
                         console.log('An error occured while trying to sign you in. ' + error)
                         this.error_message = 'An error occured while trying to sign you in. '
                         this.rf_loading = false
@@ -154,8 +190,10 @@
             let url = this.$store.state.api.getBlockData + this.blockInfo.id
             let params = {
                 url: url,
-                id: this.blockInfo.id
+                id: this.blockInfo.id,
+                ct: this.blockInfo.contentType
             }
+
             this.$store.dispatch('loadBlockData', params)
         },
         watch: {
@@ -172,13 +210,13 @@
 <style lang="scss">
     .CT_USER_LOGIN {
         border-radius: 10px;
-        max-width:300px;
+        max-width: 300px;
         margin-right: auto;
         margin-left: auto;
 
         .form-control {
-            margin-top:10px;
-            margin-bottom:10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .rf-block-title {
@@ -189,8 +227,9 @@
             box-shadow: 0 6px 6px #efefef;
             border-radius: 10px;
         }
+
         .btn {
-            margin-right:10px;
+            margin-right: 10px;
         }
     }
 </style>

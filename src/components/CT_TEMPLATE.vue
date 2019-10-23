@@ -9,22 +9,24 @@
 
         </b-row>
     </div>
-    <b-row v-else class="CT_TEMPLATE">
-        <b-col md="12">
-            <div class="mockup-paragraph">
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-                <div class="mockup-text-line"></div>
-            </div>
-        </b-col>
-    </b-row>
+    <div v-else :id="'MOCKUP_CT_TEMPLATE_'+blockInfo.id"  class="CT_TEMPLATE">
+        <b-row>
+            <b-col md="12">
+                <div class="mockup-paragraph">
+                    <div class="mockup-text-line"></div>
+                    <div class="mockup-text-line"></div>
+                    <div class="mockup-text-line"></div>
+                    <div class="mockup-text-line"></div>
+                    <div class="mockup-text-line"></div>
+                    <div class="mockup-text-line"></div>
+                </div>
+            </b-col>
+        </b-row>
+    </div>
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapGetters} from 'vuex';
 
     export default {
         props: {
@@ -32,7 +34,13 @@
             blockInfo: Object
         },
         computed: {
-            ...mapState(['blockDataChanged'])
+            ...mapState(['blockDataChanged']),
+            ...mapGetters([
+                'getCurrentUserInfo',
+                'isAuthorized',
+                'isAuthenticated',
+                'getUrlToken'
+            ])
         },
         data() {
             return {
@@ -63,7 +71,8 @@
             let url = this.$store.state.api.getBlockData + this.blockInfo.id
             let params = {
                 url: url,
-                id: this.blockInfo.id
+                id: this.blockInfo.id,
+                ct: this.blockInfo.contentType
             }
             this.$store.dispatch('loadBlockData', params)
         },
