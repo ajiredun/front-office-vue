@@ -22,7 +22,16 @@ $font-family-base:       $font-family-sans-serif !default;
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
 
-//example gradient : background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+
+.row {
+  padding:0;
+  margin:0;
+}
+
+.L_LAYOUTS {
+  padding:0;
+  margin:0;
+}
 
 .rf-primary {
   color: theme-color("primary");
@@ -97,11 +106,6 @@ $font-family-base:       $font-family-sans-serif !default;
   text-align:center;
 }
 
-.L_LAYOUTS {
-  padding:0;
-  margin:0;
-}
-
 .rf-title-margin {
   margin-top:-30px;
   .rf-block-title {
@@ -115,14 +119,12 @@ $font-family-base:       $font-family-sans-serif !default;
 }
 
 .rf-title-margin-div {
-  margin-top: 30px;
-  border: 1px solid #dcdcdc;
-  border-top: none;
-  width: 94%;
-  padding: 3%;
-  box-shadow: 2px 5px 10px #e4e4e4;
-  background: rgb(204,201,201);
-  background: linear-gradient(180deg,#9cbfd2,#d9e4f2 6%,#fff 24%,#fff 101%);
+  margin-top:30px;
+  border:1px solid gainsboro;
+  border-top:none;
+  width:94%;
+  padding:3%;
+  box-shadow: 4px 4px 15px #e4e4e4;
 }
 
 .content-rows {

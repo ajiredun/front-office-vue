@@ -51,6 +51,13 @@ new Vue({
                 this.$router.addRoutes([newRoute])
             })
 
+            let preview = {
+                path: '/preview/:id',
+                name: 'Preview',
+                component: () => import('./views/Preview.vue')
+            }
+            this.$router.addRoutes([preview])
+
             let wildRoute = {
                 path: '/**',
                 name: 'NotFound',

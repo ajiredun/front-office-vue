@@ -4,21 +4,21 @@
         v-if="switchToReal"
         :class="'CT_HALF_IMAGE_HALF_TEXT ' + displays">
 
-        <b-row v-if="title">
+        <b-row class="rf-block-title-row" v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">
                 <h2 class="title">{{ title }}</h2>
             </b-col>
         </b-row>
 
 
-        <b-row  class="content-container">
-            <b-col v-if="side=='left'" md="6">
+        <b-row  class="content-container  d-flex">
+            <b-col v-if="side=='left'" md="6" class="align-self-center">
                 <b-img fluid-grow :src="image"></b-img>
             </b-col>
-            <b-col md="6" v-html="text">
+            <b-col md="6" v-html="text" class="align-self-center">
 
             </b-col>
-            <b-col v-if="side=='right'" md="6">
+            <b-col v-if="side=='right'" md="6" class="align-self-center">
                 <b-img fluid-grow :src="image"></b-img>
             </b-col>
         </b-row>
@@ -79,10 +79,24 @@
 </script>
 
 <style lang="scss">
+
+    .CT_HALF_IMAGE_HALF_TEXT {
+        .rf-block-title-row {
+            padding-top:15px;
+            padding-bottom:15px;
+            text-align:center;
+        }
+    }
+
     .CT_HALF_IMAGE_HALF_TEXT , .content-container {
         margin: 0;
         padding: 0;
         padding-bottom: 15px;
         padding-top: 15px;
+        .col-md-6 {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                vertical-align: middle;
+        }
     }
 </style>

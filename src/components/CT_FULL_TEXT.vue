@@ -4,13 +4,13 @@
         :id="'CT_FULL_TEXT'+blockInfo.id"
         :class="'CT_FULL_TEXT ' + displays">
 
-        <b-row v-if="title">
+        <b-row no-gutters v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">
                 <h2 class="title">{{ title }}</h2>
             </b-col>
         </b-row>
 
-        <b-row no-gutters class="content-container">
+        <b-row class="content-container">
             <b-col md="12" v-html="text"></b-col>
         </b-row>
 
@@ -67,7 +67,6 @@
 <style lang="scss">
     .CT_FULL_TEXT, .content-container {
         margin: 0;
-        padding: 0;
         padding-bottom: 15px;
         padding-top: 15px;
     }

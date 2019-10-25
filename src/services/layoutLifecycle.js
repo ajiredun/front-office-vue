@@ -8,9 +8,9 @@ export default {
         ...GlobalComponents
     },
     pwa: {
-        workboxOptions: {
+        /*workboxOptions: {
             skipWaiting: true
-        }
+        }*/
     },
     props: ['pageInfo'],
     metaInfo() {

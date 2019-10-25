@@ -14,10 +14,8 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav align="center">
                     <b-nav-item to="/about-us">About us</b-nav-item>
-                    <b-nav-item to="/login">Login</b-nav-item>
-                    <b-nav-item to="/register">Create Account</b-nav-item>
-                    <b-nav-item to="/profile">My Account</b-nav-item>
-                    <b-nav-item to="/logout">Logout</b-nav-item>
+                    <b-nav-item to="/our-services">Our Services</b-nav-item>
+
                     <b-nav-item to="/">{{getCurrentUserInfo.id}}</b-nav-item>
                     <b-nav-item to="/">{{getCurrentUserInfo.name}}</b-nav-item>
                     <b-nav-item to="/">{{getCurrentUserInfo.email}}</b-nav-item>
@@ -35,8 +33,10 @@
                         <template v-slot:button-content>
                             <em><i class="fas fa-user fa-2x"></i></em>
                         </template>
-                        <b-dropdown-item href="#">Profile</b-dropdown-item>
-                        <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+                        <b-dropdown-item to="/login">Login</b-dropdown-item>
+                        <b-dropdown-item to="/logout">Logout</b-dropdown-item>
+                        <b-dropdown-item to="/register">Create Account</b-dropdown-item>
+                        <b-dropdown-item to="/profile">My Account</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
             </b-collapse>
