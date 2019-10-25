@@ -1,13 +1,18 @@
 <template>
-    <div :id="'CT_TEMPLATE_'+blockInfo.id" v-if="switchToReal" :class="'CT_TEMPLATE ' + displays">
-        <b-row no-gutters  v-if="title">
+    <div    v-if="switchToReal"
+            :id="'CT_TEMPLATE_'+blockInfo.id"
+            :class="'CT_TEMPLATE ' + displays">
+
+        <b-row v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">
-                <h2 class="title">{{title}}</h2>
+                <h2 class="title">{{ title }}</h2>
             </b-col>
         </b-row>
+
         <b-row no-gutters>
 
         </b-row>
+
     </div>
     <div v-else :id="'MOCKUP_CT_TEMPLATE_'+blockInfo.id"  class="CT_TEMPLATE">
         <b-row>

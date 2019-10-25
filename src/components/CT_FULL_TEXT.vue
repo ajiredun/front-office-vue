@@ -1,12 +1,20 @@
 <template>
-    <b-row :id="'CT_FULL_TEXT'+blockInfo.id" v-if="switchToReal" :class="'CT_FULL_TEXT ' + displays">
-        <b-col class="rf-block-title" md="12" v-if="title">
-            <h2 class="title">{{title}}</h2>
-        </b-col>
-        <b-col md="12" v-html="text">
+    <div
+        v-if="switchToReal"
+        :id="'CT_FULL_TEXT'+blockInfo.id"
+        :class="'CT_FULL_TEXT ' + displays">
 
-        </b-col>
-    </b-row>
+        <b-row v-if="title">
+            <b-col md="12" class="rf-block-title rf-primary">
+                <h2 class="title">{{ title }}</h2>
+            </b-col>
+        </b-row>
+
+        <b-row no-gutters style="content-container">
+            <b-col md="12" v-html="text"></b-col>
+        </b-row>
+
+    </div>
     <b-row v-else class="CT_FULL_TEXT">
         <b-col md="12" v-if="title">
             <div class="mockup-container">
@@ -28,8 +36,10 @@
 <script>
     import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
+    import RfContentTitle from "./base/RF_CONTENT_TITLE";
 
     export default {
+        components: {RfContentTitle},
         extends: componentLifecycle,
         data() {
             return {
@@ -55,7 +65,7 @@
 </script>
 
 <style lang="scss">
-    .CT_FULL_TEXT {
+    .CT_FULL_TEXT , .content-container {
         margin: 0;
         padding: 0;
         padding-bottom: 15px;

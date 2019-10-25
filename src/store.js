@@ -76,12 +76,12 @@ export default new Vuex.Store({
                         //console.log("User has access")
                     } else {
                         let currentUrl = window.location.pathname + window.location.search
-                        window.location.href = context.state.loginUrl + "?redirectUrl="+context.state.frontOfficeUrl + currentUrl
+                        window.location.href = context.state.loginUrl + "?redirectUrl="+currentUrl
                     }
 
                 } else {
                     let currentUrl = window.location.pathname + window.location.search
-                    window.location.href = context.state.loginUrl + "?redirectUrl="+context.state.frontOfficeUrl + currentUrl
+                    window.location.href = context.state.loginUrl + "?redirectUrl="+currentUrl
                 }
             }
 

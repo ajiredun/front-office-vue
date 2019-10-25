@@ -1,19 +1,28 @@
 <template>
-    <b-row :id="'CT_HALF_IMAGE_HALF_TEXT'+blockInfo.id" v-if="switchToReal"
-           :class="'CT_HALF_IMAGE_HALF_TEXT ' + displays">
-        <b-col class="rf-block-title" md="12" v-if="title">
-            <h2 class="title">{{title}}</h2>
-        </b-col>
-        <b-col v-if="side=='left'" md="6">
-            <b-img fluid-grow :src="image"></b-img>
-        </b-col>
-        <b-col md="6" v-html="text">
+    <div
+        :id="'CT_HALF_IMAGE_HALF_TEXT'+blockInfo.id"
+        v-if="switchToReal"
+        :class="'CT_HALF_IMAGE_HALF_TEXT ' + displays">
 
-        </b-col>
-        <b-col v-if="side=='right'" md="6">
-            <b-img fluid-grow :src="image"></b-img>
-        </b-col>
-    </b-row>
+        <b-row v-if="title">
+            <b-col md="12" class="rf-block-title rf-primary">
+                <h2 class="title">{{ title }}</h2>
+            </b-col>
+        </b-row>
+
+
+        <b-row no-gutters>
+            <b-col v-if="side=='left'" md="6">
+                <b-img fluid-grow :src="image"></b-img>
+            </b-col>
+            <b-col md="6" v-html="text">
+
+            </b-col>
+            <b-col v-if="side=='right'" md="6">
+                <b-img fluid-grow :src="image"></b-img>
+            </b-col>
+        </b-row>
+    </div>
     <div v-else class="CT_HALF_IMAGE_HALF_TEXT">
         <b-row>
             <b-col md="12" v-if="title">

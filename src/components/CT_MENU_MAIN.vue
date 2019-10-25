@@ -1,5 +1,8 @@
 <template>
-    <div v-if="switchToReal" :class="'CT_MENU_MAIN ' + displays">
+    <div
+            v-if="switchToReal"
+            :class="'CT_MENU_MAIN ' + displays">
+
         <b-navbar toggleable="lg" sticky="true" type="light" variant="white">
             <b-navbar-brand to="/">
                 <b-img class="nav-logo" blank-color="#777"
@@ -15,6 +18,9 @@
                     <b-nav-item to="/register">Create Account</b-nav-item>
                     <b-nav-item to="/profile">My Account</b-nav-item>
                     <b-nav-item to="/logout">Logout</b-nav-item>
+                    <b-nav-item to="/">{{getCurrentUserInfo.id}}</b-nav-item>
+                    <b-nav-item to="/">{{getCurrentUserInfo.name}}</b-nav-item>
+                    <b-nav-item to="/">{{getCurrentUserInfo.email}}</b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->
@@ -77,8 +83,7 @@
     export default {
         extends: componentLifecycle,
         data() {
-            return {
-            };
+            return {};
         },
         methods: {
             processData(block) {

@@ -1,17 +1,23 @@
 import {mapState, mapGetters} from 'vuex';
 import axios from 'axios'
+import GlobalComponents from '@/globalComponents.js'
 
 export default {
     props: {
         currentSlotId: String,
         blockInfo: Object
     },
+    components: {
+        ...GlobalComponents
+    },
     data() {
         return {
             switchToReal: false,
-            error_info: '',
+            error_info: '', //use to display access errors
             title: false,
             displays: '',
+            error_message: false, // use within the component template
+            follow_up: false // use within the component template for user information
         };
     },
     methods: {
@@ -76,10 +82,9 @@ export default {
                     }
                 }
             }
-
             console.log(selectedMessage)
             return selectedMessage
-        }
+        },
     },
     computed: {
         ...mapState(['blockDataChanged']),
@@ -106,7 +111,7 @@ export default {
                 let userRoles = this.getCurrentUserInfo.roles
                 let found = blockRoles.some(r=> userRoles.indexOf(r) >= 0)
                 if (found) {
-                    this.$store.dispatch('removeAuthInfo', params)
+                    this.$store.dispatch('loadBlockData', params)
                 } else {
                     // user don't have access
                     //let block_mockup = document.getElementById('MOCKUP_'+ params.ct + "_" + params.id)

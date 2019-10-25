@@ -1,19 +1,28 @@
 <template>
-    <b-row :id="'CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT'+blockInfo.id" v-if="switchToReal"
-           :class="'CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT ' + displays">
-        <b-col class="rf-block-title" md="12" v-if="title">
-            <h2 class="title">{{title}}</h2>
-        </b-col>
-        <b-col v-if="side=='left'" md="4">
-            <b-img fluid-grow :src="image"></b-img>
-        </b-col>
-        <b-col md="8" v-html="text">
+    <div
+            v-if="switchToReal"
+            :id="'CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT'+blockInfo.id"
+            :class="'CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT ' + displays">
 
-        </b-col>
-        <b-col v-if="side=='right'" md="4">
-            <b-img fluid-grow :src="image"></b-img>
-        </b-col>
-    </b-row>
+        <b-row v-if="title">
+            <b-col md="12" class="rf-block-title rf-primary">
+                <h2 class="title">{{ title }}</h2>
+            </b-col>
+        </b-row>
+
+        <b-row  no-gutters>
+            <b-col v-if="side=='left'" md="4">
+                <b-img fluid-grow :src="image"></b-img>
+            </b-col>
+            <b-col md="8" v-html="text">
+
+            </b-col>
+            <b-col v-if="side=='right'" md="4">
+                <b-img fluid-grow :src="image"></b-img>
+            </b-col>
+        </b-row>
+
+    </div>
     <div v-else class="CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT">
         <b-row>
             <b-col md="12">

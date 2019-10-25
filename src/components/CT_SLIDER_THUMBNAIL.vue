@@ -1,132 +1,142 @@
 <template>
-    <b-row :id="'CT_SLIDER_THUMBNAIL_'+blockInfo.id" v-if="switchToReal" :class="'CT_SLIDER_THUMBNAIL ' + displays">
-        <b-col md="12" class="rf-block-title" v-if="title">
-            <h2 class="title">{{title}}</h2>
-        </b-col>
-        <b-col md="12">
-            <carousel
-                    :id="'slider-thumbnail-'+blockInfo.id"
-                    easing="linear"
-                    speed="300"
-                    :loop="true"
-                    :autoplay="autoplay"
-                    :autoplayTimeout="autoplayTimeout"
-                    :autoplayHoverPause="true"
-                    :scrollPerPage="false"
-                    :perPageCustom="[[100, 1],[576, slideQtyInMobile],[768,slideQtyInTablet],[992,slideQtyInDesktop]]">
-                <slide v-if="image01">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image01 + ')' ,'height': adv_height }"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image01"></b-img>
-                        <a v-if="image01Url" class="btn btn-sm btn-outline-dark" :href="image01Url"
-                           style="margin-top:10px;">{{image01UrlText}}</a>
-                    </div>
-                </slide>
-                <slide v-if="image02">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image02 + ')' ,'height': adv_height}"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image02"></b-img>
-                        <a v-if="image02Url" class="btn btn-sm btn-outline-dark" :href="image02Url"
-                           style="margin-top:10px;">{{image02UrlText}}</a>
-                    </div>
-                </slide>
-                <slide v-if="image03">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image03 + ')' ,'height': adv_height }"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image03"></b-img>
-                        <a v-if="image03Url" class="btn btn-sm btn-outline-dark" :href="image03Url"
-                           style="margin-top:10px;">{{image03UrlText}}</a>
-                    </div>
-                </slide>
-                <slide v-if="image04">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image04 + ')' ,'height': adv_height }"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image04"></b-img>
-                        <a v-if="image04Url" class="btn btn-sm btn-outline-dark" :href="image04Url"
-                           style="margin-top:10px;">{{image04UrlText}}</a>
-                    </div>
-                </slide>
-                <slide v-if="image05">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image05 + ')' ,'height': adv_height }"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image05"></b-img>
-                        <a v-if="image05Url" class="btn btn-sm btn-outline-dark" :href="image05Url"
-                           style="margin-top:10px;">{{image05UrlText}}</a>
-                    </div>
-                </slide>
-                <slide v-if="image06">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image06 + ')' ,'height': adv_height }"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image06"></b-img>
-                        <a v-if="image06Url" class="btn btn-sm btn-outline-dark" :href="image06Url"
-                           style="margin-top:10px;">{{image06UrlText}}</a>
-                    </div>
-                </slide>
-                <slide v-if="image07">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image07 + ')' ,'height': adv_height }"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image07"></b-img>
-                        <a v-if="image07Url" class="btn btn-sm btn-outline-dark" :href="image07Url"
-                           style="margin-top:10px;">{{image07UrlText}}</a>
-                    </div>
-                </slide>
-                <slide v-if="image08">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image08 + ')' ,'height': adv_height }"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image08"></b-img>
-                        <a v-if="image08Url" class="btn btn-sm btn-outline-dark" :href="image08Url"
-                           style="margin-top:10px;">{{image08UrlText}}</a>
-                    </div>
-                </slide>
-                <slide v-if="image09">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image09 + ')' ,'height': adv_height }"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image09"></b-img>
-                        <a v-if="image09Url" class="btn btn-sm btn-outline-dark" :href="image09Url"
-                           style="margin-top:10px;">{{image09UrlText}}</a>
-                    </div>
-                </slide>
-                <slide v-if="image10">
-                    <div style="width:100%;">
-                        <div v-if="adv_height"
-                             class="image-as-background"
-                             :style="{ 'background-image':  'url(' + image10 + ')' ,'height': adv_height }"
-                        ></div>
-                        <b-img v-else fluid-grow blank-color="#777" :src="image10"></b-img>
-                        <a v-if="image10Url" class="btn btn-sm btn-outline-dark" :href="image10Url"
-                           style="margin-top:10px;">{{image10UrlText}}</a>
-                    </div>
-                </slide>
-            </carousel>
-        </b-col>
-    </b-row>
+    <div
+            v-if="switchToReal"
+            :id="'CT_SLIDER_THUMBNAIL_'+blockInfo.id"
+            :class="'CT_SLIDER_THUMBNAIL ' + displays">
+
+        <b-row  v-if="title">
+            <b-col md="12" class="rf-block-title rf-primary">
+                <h2 class="title">{{ title }}</h2>
+            </b-col>
+        </b-row>
+
+        <b-row>
+            <b-col md="12">
+                <carousel
+                        :id="'slider-thumbnail-'+blockInfo.id"
+                        easing="linear"
+                        speed="300"
+                        :loop="true"
+                        :autoplay="autoplay"
+                        :autoplayTimeout="autoplayTimeout"
+                        :autoplayHoverPause="true"
+                        :scrollPerPage="false"
+                        :perPageCustom="[[100, 1],[576, slideQtyInMobile],[768,slideQtyInTablet],[992,slideQtyInDesktop]]">
+                    <slide v-if="image01">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image01 + ')' ,'height': adv_height }"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image01"></b-img>
+                            <a v-if="image01Url" class="btn btn-sm btn-outline-dark" :href="image01Url"
+                               style="margin-top:10px;">{{image01UrlText}}</a>
+                        </div>
+                    </slide>
+                    <slide v-if="image02">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image02 + ')' ,'height': adv_height}"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image02"></b-img>
+                            <a v-if="image02Url" class="btn btn-sm btn-outline-dark" :href="image02Url"
+                               style="margin-top:10px;">{{image02UrlText}}</a>
+                        </div>
+                    </slide>
+                    <slide v-if="image03">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image03 + ')' ,'height': adv_height }"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image03"></b-img>
+                            <a v-if="image03Url" class="btn btn-sm btn-outline-dark" :href="image03Url"
+                               style="margin-top:10px;">{{image03UrlText}}</a>
+                        </div>
+                    </slide>
+                    <slide v-if="image04">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image04 + ')' ,'height': adv_height }"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image04"></b-img>
+                            <a v-if="image04Url" class="btn btn-sm btn-outline-dark" :href="image04Url"
+                               style="margin-top:10px;">{{image04UrlText}}</a>
+                        </div>
+                    </slide>
+                    <slide v-if="image05">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image05 + ')' ,'height': adv_height }"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image05"></b-img>
+                            <a v-if="image05Url" class="btn btn-sm btn-outline-dark" :href="image05Url"
+                               style="margin-top:10px;">{{image05UrlText}}</a>
+                        </div>
+                    </slide>
+                    <slide v-if="image06">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image06 + ')' ,'height': adv_height }"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image06"></b-img>
+                            <a v-if="image06Url" class="btn btn-sm btn-outline-dark" :href="image06Url"
+                               style="margin-top:10px;">{{image06UrlText}}</a>
+                        </div>
+                    </slide>
+                    <slide v-if="image07">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image07 + ')' ,'height': adv_height }"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image07"></b-img>
+                            <a v-if="image07Url" class="btn btn-sm btn-outline-dark" :href="image07Url"
+                               style="margin-top:10px;">{{image07UrlText}}</a>
+                        </div>
+                    </slide>
+                    <slide v-if="image08">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image08 + ')' ,'height': adv_height }"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image08"></b-img>
+                            <a v-if="image08Url" class="btn btn-sm btn-outline-dark" :href="image08Url"
+                               style="margin-top:10px;">{{image08UrlText}}</a>
+                        </div>
+                    </slide>
+                    <slide v-if="image09">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image09 + ')' ,'height': adv_height }"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image09"></b-img>
+                            <a v-if="image09Url" class="btn btn-sm btn-outline-dark" :href="image09Url"
+                               style="margin-top:10px;">{{image09UrlText}}</a>
+                        </div>
+                    </slide>
+                    <slide v-if="image10">
+                        <div style="width:100%;">
+                            <div v-if="adv_height"
+                                 class="image-as-background"
+                                 :style="{ 'background-image':  'url(' + image10 + ')' ,'height': adv_height }"
+                            ></div>
+                            <b-img v-else fluid-grow blank-color="#777" :src="image10"></b-img>
+                            <a v-if="image10Url" class="btn btn-sm btn-outline-dark" :href="image10Url"
+                               style="margin-top:10px;">{{image10UrlText}}</a>
+                        </div>
+                    </slide>
+                </carousel>
+            </b-col>
+        </b-row>
+
+    </div>
     <div v-else :id="'MOCKUP_CT_SLIDER_THUMBNAIL_'+blockInfo.id" class="CT_SLIDER_THUMBNAIL">
         <b-row>
             <b-col md="12">

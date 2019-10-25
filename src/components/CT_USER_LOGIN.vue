@@ -1,11 +1,16 @@
 <template>
-    <div :id="'CT_USER_LOGIN_'+blockInfo.id" v-if="switchToReal"
-         :class="'CT_USER_LOGIN rf-title-margin-div ' + displays">
+    <div
+            v-if="switchToReal"
+            :style="{ fontSize: postFontSize + 'em' }"
+            :id="'CT_USER_LOGIN_'+blockInfo.id"
+            :class="'CT_USER_LOGIN rf-title-margin-div ' + displays">
+
         <b-row no-gutters class="rf-title-margin">
-            <b-col md="12" class="rf-block-title rf-neutral rf-background-secondary" v-if="title">
-                <h2 class="title">{{title}}</h2>
+            <b-col md="12"  v-if="title" class="rf-block-title rf-neutral rf-background-secondary">
+                <h2 class="title">{{ title }}</h2>
             </b-col>
         </b-row>
+
         <b-row no-gutters>
             <b-col md="12">
                 <b-form @submit="onSubmit" id="form_login" v-if="show" class="mb-3"
@@ -64,15 +69,18 @@
                 <b-row>
                     <b-col md="12">
                         <div class="d-flex justify-content-between">
-                            <b-button size="sm" type="button" :to="'register'" variant="outline-dark">Register</b-button>
-                            <b-button size="sm" type="button" :to="'password-recovery'" variant="outline-warning">Forgot Password ?</b-button>
+                            <b-button size="sm" type="button" :to="'register'" variant="outline-dark">Register
+                            </b-button>
+                            <b-button size="sm" type="button" :to="'password-recovery'" variant="outline-warning">Forgot
+                                Password ?
+                            </b-button>
                         </div>
                     </b-col>
                 </b-row>
             </b-col>
         </b-row>
     </div>
-    <div no-gutters v-else :id="'MOCKUP_CT_USER_LOGIN_'+blockInfo.id"  class="CT_USER_LOGIN">
+    <div no-gutters v-else :id="'MOCKUP_CT_USER_LOGIN_'+blockInfo.id" class="CT_USER_LOGIN">
         <b-row>
             <b-col md="12">
                 <div class="mockup-container">
@@ -91,8 +99,10 @@
 <script>
     import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
+    import RfFormTitle from "./base/RF_FORM_TITLE";
 
     export default {
+        components: {RfFormTitle},
         extends: componentLifecycle,
         data() {
             return {
@@ -102,8 +112,6 @@
                     input_password: ''
                 },
                 show: true,
-                error_message: false,
-                follow_up: false
             };
         },
         methods: {
@@ -146,15 +154,16 @@
                                 user_name: data.user_name,
                             }
                             this.$store.dispatch('setAuthInfo', userInfo)
-                            //console.log(this.getCurrentUserInfo)
-                            //console.log(this.isAuthenticated)
-                            //console.log(this.isAuthorized('ROLE_USER'))
 
                             if (!this.$route.query.redirectUrl) {
-                                window.location.href = this.$store.state.frontOfficeUrl;
+                                this.$router.push({
+                                    path: '/'
+                                })
                             } else {
                                 let redirectUrl = this.$route.query.redirectUrl
-                                window.location.href = redirectUrl;
+                                this.$router.push({
+                                    path: redirectUrl
+                                })
                             }
                         } else {
                             this.follow_up = false
@@ -163,26 +172,12 @@
                         this.rf_loading = false
                     })
                     .catch((error) => {
-                        let status = error.response.status
-                        if (status == 403) {
-                            this.error_message = 'You do not have access to this contet'
-                            console.log('User do not have access to block: ' + blockId)
-                        } else {
-                            if (status == 404) {
-                                this.error_message = 'An error occured while trying to sign you in. '
-                                console.log('Block not found: ' + blockId)
-                            } else {
-                                if (status == 401) {
-                                    this.error_message = 'Invalid Credentials. Please contact us'
-                                    console.log('Error 401 while logging: ' + response.data.message)
-                                } else {
-                                    this.error_message = 'An error occured while trying to sign you in. '
-                                    console.log('Error loading block: ' + blockId)
-                                }
-                            }
-                        }
-                        console.log('An error occured while trying to sign you in. ' + error)
-                        this.error_message = 'An error occured while trying to sign you in. '
+                        this.error_message = this.processApiErrors(error, {
+                            default: "An error occured while trying to sign you in.",
+                            error404: "An error occured while trying to sign you in.",
+                            error401: "Invalid Credentials. Please contact us",
+                            error403: "You do not have access to this content"
+                        })
                         this.rf_loading = false
                     });
             },
@@ -200,19 +195,6 @@
         .form-control {
             margin-top: 10px;
             margin-bottom: 10px;
-        }
-
-        .rf-block-title {
-            padding-top: 15px;
-            font-size: 30px;
-            padding-bottom: 10px;
-            text-align: center;
-            box-shadow: 0 6px 6px #c1c1c1;
-            border-radius: 10px;
-        }
-
-        .btn {
-            //margin: 10px;
         }
     }
 </style>

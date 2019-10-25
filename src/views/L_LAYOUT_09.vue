@@ -1,29 +1,29 @@
 <template>
     <b-container fluid class="L_LAYOUTS L_LAYOUT_09">
         <b-row no-gutters>
-            <b-col md="12">
+            <b-col md="12" class="slot-container">
                 <rf-slot slotCode="S_SLOT_01"/>
                 <!--<ct-main-menu/>-->
             </b-col>
         </b-row>
         <b-row no-gutters class="content-rows">
-            <b-col md="8">
+            <b-col md="8" class="slot-container">
                 <rf-slot slotCode="S_SLOT_02"/>
             </b-col>
-            <b-col md="4">
+            <b-col md="4" class="slot-container">
                 <rf-slot slotCode="S_SLOT_03"/>
             </b-col>
         </b-row>
         <b-row no-gutters class="content-rows">
-            <b-col md="4">
+            <b-col md="4" class="slot-container">
                 <rf-slot slotCode="S_SLOT_04"/>
             </b-col>
-            <b-col md="8">
+            <b-col md="8" class="slot-container">
                 <rf-slot slotCode="S_SLOT_05"/>
             </b-col>
         </b-row>
         <b-row no-gutters>
-            <b-col md="12">
+            <b-col md="12" class="slot-container">
                 <rf-slot slotCode="S_SLOT_06"/>
             </b-col>
         </b-row>

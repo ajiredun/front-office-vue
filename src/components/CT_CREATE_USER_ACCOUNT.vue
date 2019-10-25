@@ -205,20 +205,14 @@
                         this.rf_loading = false
                     })
                     .catch((error) => {
-                        let status = error.response.status
-                        if (status == 403) {
-                            console.log('User do not have access to block')
-                        } else {
-                            if (status == 404) {
-                                console.log('Block not found')
-                            } else {
-                                if (status == 401) {
-                                    console.log('Unauthorized access')
-                                } else {
-                                    console.log('Error loading block')
-                                }
-                            }
-                        }
+
+                        this.response.success = data.success;
+                        this.response.message = this.processApiErrors(error, {
+                            default: "An error occurred. Please contact admin",
+                            error404: "Block not found",
+                            error401: "Unauthorized access",
+                            error403: "You do not have access to this content"
+                        })
                         this.rf_loading = false
                     });
             },
@@ -259,15 +253,6 @@
         .form-control {
             margin-top: 10px;
             margin-bottom: 10px;
-        }
-
-        .rf-block-title {
-            padding-top: 15px;
-            font-size: 30px;
-            padding-bottom: 10px;
-            text-align: center;
-            box-shadow: 0 6px 6px #c1c1c1;
-            border-radius: 10px;
         }
 
         .btn {

@@ -1,22 +1,39 @@
 <template>
-    <b-row :id="'CT_USER_ACTIVATE_ACCOUNT_'+blockInfo.id" v-if="switchToReal"
+    <div
+            :id="'CT_USER_ACTIVATE_ACCOUNT_'+blockInfo.id"
+            v-if="switchToReal"
            :class="'CT_USER_ACTIVATE_ACCOUNT ' + displays">
+
+        <b-row v-if="title">
+            <b-col md="12" class="rf-block-title rf-primary">
+                <h2 class="title">{{ title }}</h2>
+            </b-col>
+        </b-row>
+
         <b-col md="12" class="rf-block-title rf-primary" v-if="title">
             <h2 class="title">{{title}}</h2>
-            <i v-if="follow_up" class="fas fa-spinner fa-3x fa-spin"></i>
+
         </b-col>
-        <b-col md="12" v-if="error_message" class="rf-warning">
-            <i class="fas fa-exclamation-triangle fa-3x"/>
-            <br/><br/>
-            <h3 class="title">{{error_message}}</h3>
-        </b-col>
-        <b-col md="12" v-if="follow_up" class="rf-secondary">
-            <br/>
-            <br/>
-            <h3 class="title">{{follow_up}}</h3>
-        </b-col>
+
+        <b-row  v-if="error_message">
+            <b-col md="12" class="rf-warning">
+                <i class="fas fa-exclamation-triangle fa-3x"/>
+                <br/><br/>
+                <h3 class="title">{{error_message}}</h3>
+            </b-col>
+        </b-row>
+
+        <b-row v-if="follow_up">
+            <b-col md="12" class="rf-secondary">
+                <i v-if="follow_up" class="fas fa-spinner fa-3x fa-spin"></i>
+                <br/>
+                <br/>
+                <h3 class="title">{{follow_up}}</h3>
+            </b-col>
+        </b-row>
+
         <br/><br/><br/><br/>
-    </b-row>
+    </div>
     <div v-else class="CT_USER_ACTIVATE_ACCOUNT">
         <b-row>
             <b-col md="12">
@@ -38,8 +55,6 @@
         extends: componentLifecycle,
         data() {
             return {
-                error_message: false,
-                follow_up: false
             };
         },
         methods: {
@@ -81,22 +96,13 @@
                             }
                         })
                         .catch((error) => {
-                            let status = error.response.status
-                            if (status == 403) {
-                                console.log('User do not have access to block')
-                            } else {
-                                if (status == 404) {
-                                    console.log('Block not found')
-                                } else {
-                                    if (status == 401) {
-                                        console.log('Unauthorized access')
-                                    } else {
-                                        console.log('Error loading block')
-                                    }
-                                }
-                            }
 
-                            this.error_message = "An error occured during the activation of your account"
+                            this.error_message = this.processApiErrors(error, {
+                                default: "An error occured during the activation of your account",
+                                error404: "An error occured while trying to sign you in.",
+                                error401: "Unauthorized access"
+                            })
+
                             console.log('Error activating the account: ' + error)
                         });
 

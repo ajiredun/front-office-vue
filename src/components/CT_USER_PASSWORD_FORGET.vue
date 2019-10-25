@@ -1,11 +1,16 @@
 <template>
-    <div :id="'CT_USER_PASSWORD_FORGET_'+blockInfo.id" v-if="switchToReal"
-         :class="'CT_USER_PASSWORD_FORGET  rf-title-margin-div' + displays">
-        <b-row no-gutters v-if="title" class="rf-title-margin">
-            <b-col md="12" class="rf-block-title rf-background-secondary rf-neutral">
-                <h4 class="title">{{title}}</h4>
+    <div    v-if="switchToReal"
+            :id="'CT_USER_PASSWORD_FORGET_'+blockInfo.id"
+            :class="'CT_USER_PASSWORD_FORGET  rf-title-margin-div' + displays">
+
+
+        <b-row v-if="title">
+            <b-col md="12" class="rf-block-title rf-primary">
+                <h2 class="title">{{ title }}</h2>
             </b-col>
         </b-row>
+
+
         <b-row no-gutters>
 
             <b-col md="12">

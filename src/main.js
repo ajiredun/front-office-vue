@@ -63,7 +63,7 @@ new Vue({
     created() {
 
         //setting the state.authentication from localstorage
-        if (localStorage.getItem('rf-storage') != null) {
+        if (localStorage.getItem('rfstorage') != null) {
             let auths = JSON.parse(localStorage.getItem('rfstorage'))
             if (auths !== undefined && auths !== null && auths.length !== 0) {
                 this.$store.dispatch('setAuthInfo', auths)
