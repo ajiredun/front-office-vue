@@ -10,7 +10,7 @@
             </b-col>
         </b-row>
 
-        <b-row no-gutters style="content-container">
+        <b-row no-gutters class="content-container">
             <b-col md="12" v-html="text"></b-col>
         </b-row>
 
@@ -65,7 +65,7 @@
 </script>
 
 <style lang="scss">
-    .CT_FULL_TEXT , .content-container {
+    .CT_FULL_TEXT, .content-container {
         margin: 0;
         padding: 0;
         padding-bottom: 15px;

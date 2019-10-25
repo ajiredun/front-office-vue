@@ -10,7 +10,7 @@
             </b-col>
         </b-row>
 
-        <b-row  no-gutters>
+        <b-row  class="content-container">
             <b-col v-if="side=='left'" md="4">
                 <b-img fluid-grow :src="image"></b-img>
             </b-col>
@@ -79,7 +79,7 @@
 </script>
 
 <style lang="scss">
-    .CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT {
+    .CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT, .content-container {
         margin: 0;
         padding: 0;
         padding-bottom: 15px;

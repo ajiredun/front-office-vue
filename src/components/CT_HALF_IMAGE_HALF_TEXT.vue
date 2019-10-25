@@ -11,7 +11,7 @@
         </b-row>
 
 
-        <b-row no-gutters>
+        <b-row  class="content-container">
             <b-col v-if="side=='left'" md="6">
                 <b-img fluid-grow :src="image"></b-img>
             </b-col>
@@ -79,7 +79,7 @@
 </script>
 
 <style lang="scss">
-    .CT_HALF_IMAGE_HALF_TEXT {
+    .CT_HALF_IMAGE_HALF_TEXT , .content-container {
         margin: 0;
         padding: 0;
         padding-bottom: 15px;

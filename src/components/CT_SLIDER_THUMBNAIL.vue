@@ -10,7 +10,7 @@
             </b-col>
         </b-row>
 
-        <b-row>
+        <b-row no-gutters>
             <b-col md="12">
                 <carousel
                         :id="'slider-thumbnail-'+blockInfo.id"
@@ -144,7 +144,9 @@
                     <div class="mockup-text-line" style="height:25px;"></div>
                 </div>
             </b-col>
-            <b-col md="12" no-gutters>
+        </b-row>
+        <b-row no-gutters>
+            <b-col md="12">
                 <b-row>
                     <b-col>
                         <div style="background:gainsboro;width:100%;height:200px;"></div>
