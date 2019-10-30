@@ -36,6 +36,7 @@ new Vue({
             let data = response.data['hydra:member']
 
             console.log(data)
+            this.$store.dispatch('setPages', data)
 
             data.forEach((route) => {
                 let routing = route.route

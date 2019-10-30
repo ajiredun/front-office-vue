@@ -4,13 +4,13 @@
         :id="'CT_FULL_TEXT'+blockInfo.id"
         :class="'CT_FULL_TEXT ' + displays">
 
-        <b-row no-gutters v-if="title">
+        <b-row class="rf-block-title-row" no-gutters v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">
                 <h2 class="title">{{ title }}</h2>
             </b-col>
         </b-row>
 
-        <b-row class="content-container">
+        <b-row class="content-container" :style="style">
             <b-col md="12" v-html="text"></b-col>
         </b-row>
 
@@ -46,6 +46,9 @@
                 image: false,
                 side: 'left',
                 text: false,
+                style: {
+                    'backgroundColor': "rgba(255,255,255,0);"
+                }
             };
         },
         methods: {
@@ -55,8 +58,9 @@
                 let properties = block.properties
                 this.mapBasicBlockProperties(properties)
 
-
-
+                if ( properties.background != undefined ) {
+                    this.style.backgroundColor = properties.background
+                }
 
                 this.switchToReal = true
             }
@@ -69,5 +73,13 @@
         margin: 0;
         padding-bottom: 15px;
         padding-top: 15px;
+    }
+
+    .CT_FULL_TEXT {
+        .rf-block-title-row {
+            padding-top:15px;
+            padding-bottom:15px;
+            text-align:center;
+        }
     }
 </style>

@@ -154,6 +154,7 @@
                                 user_name: data.user_name,
                             }
                             this.$store.dispatch('setAuthInfo', userInfo)
+                            this.$store.dispatch('updateReloadMenu')
 
                             if (!this.$route.query.redirectUrl) {
                                 this.$router.push({

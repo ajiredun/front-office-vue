@@ -34,11 +34,16 @@ export default new Vuex.Store({
         container: {
             'blockData': []
         },
-        blockDataChanged: 0
+        blockDataChanged: 0,
+        pages: false,
+        reloadMenu: 0,
     },
     mutations: {
         setPageInfo(state, value) {
             state.pageInfo = value
+        },
+        setPages(state, value) {
+            state.pages = value
         },
         setAuthInfo(state, arrayInfo) {
             state.authentication.email = arrayInfo.email
@@ -63,6 +68,9 @@ export default new Vuex.Store({
         addBlockData(state, arrayInfo) {
             state.container.blockData[arrayInfo['blockId']] = arrayInfo['data']
             state.blockDataChanged = arrayInfo['blockId']
+        },
+        updateReloadMenu(state) {
+            state.reloadMenu = state.reloadMenu + 1
         }
     },
     actions: {
@@ -85,7 +93,6 @@ export default new Vuex.Store({
                     window.location.href = context.state.loginUrl + "?redirectUrl="+currentUrl
                 }
             }
-
             context.commit('setPageInfo', value)
 
             let blocks = {}
@@ -95,11 +102,19 @@ export default new Vuex.Store({
 
             context.commit('setBlockData', blocks)
         },
+        setPages(context, value)  {
+
+            context.commit('setPages', value)
+        },
         setAuthInfo(context, value) {
             context.commit('setAuthInfo', value)
         },
         removeAuthInfo(context) {
             context.commit('removeAuthInfo')
+            context.commit('updateReloadMenu')
+        },
+        updateReloadMenu(context) {
+            context.commit('updateReloadMenu')
         },
         setBlockData(context, data) {
             context.commit('setBlockData', data)
@@ -146,6 +161,7 @@ export default new Vuex.Store({
     },
     getters: {
         blockData: state => state.container.blockData,
+        getPages: state => state.pages,
         container: state => state.container,
         getUrlToken: state => 'rf-auth='+state.authentication.token,
         isAuthenticated: state => {

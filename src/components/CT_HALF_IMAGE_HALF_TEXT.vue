@@ -11,7 +11,7 @@
         </b-row>
 
 
-        <b-row  class="content-container  d-flex">
+        <b-row  class="content-container  d-flex"  :style="style">
             <b-col v-if="side=='left'" md="6" class="align-self-center">
                 <b-img fluid-grow :src="image"></b-img>
             </b-col>
@@ -59,6 +59,9 @@
                 image: false,
                 side: 'left',
                 text: false,
+                style: {
+                    'backgroundColor': "rgba(255,255,255,0);"
+                }
             };
         },
         methods: {
@@ -70,6 +73,10 @@
 
                 if (properties.side) {
                     this.side = properties.side
+                }
+
+                if ( properties.background != undefined ) {
+                    this.style.backgroundColor = properties.background
                 }
 
                 this.switchToReal = true

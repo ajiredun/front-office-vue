@@ -4,7 +4,7 @@
             :id="'CT_SLIDER_THUMBNAIL_'+blockInfo.id"
             :class="'CT_SLIDER_THUMBNAIL ' + displays">
 
-        <b-row  v-if="title">
+        <b-row  v-if="title"  class="rf-block-title-row">
             <b-col md="12" class="rf-block-title rf-primary">
                 <h2 class="title">{{ title }}</h2>
             </b-col>
@@ -30,7 +30,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image01"></b-img>
                             <a v-if="image01Url" class="btn btn-sm btn-outline-dark" :href="image01Url"
-                               style="margin-top:10px;">{{image01UrlText}}</a>
+                               style="margin-top:15px;">{{image01UrlText}}</a>
                         </div>
                     </slide>
                     <slide v-if="image02">
@@ -41,7 +41,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image02"></b-img>
                             <a v-if="image02Url" class="btn btn-sm btn-outline-dark" :href="image02Url"
-                               style="margin-top:10px;">{{image02UrlText}}</a>
+                               style="margin-top:15px;">{{image02UrlText}}</a>
                         </div>
                     </slide>
                     <slide v-if="image03">
@@ -52,7 +52,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image03"></b-img>
                             <a v-if="image03Url" class="btn btn-sm btn-outline-dark" :href="image03Url"
-                               style="margin-top:10px;">{{image03UrlText}}</a>
+                               style="margin-top:15px;">{{image03UrlText}}</a>
                         </div>
                     </slide>
                     <slide v-if="image04">
@@ -63,7 +63,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image04"></b-img>
                             <a v-if="image04Url" class="btn btn-sm btn-outline-dark" :href="image04Url"
-                               style="margin-top:10px;">{{image04UrlText}}</a>
+                               style="margin-top:15px;">{{image04UrlText}}</a>
                         </div>
                     </slide>
                     <slide v-if="image05">
@@ -74,7 +74,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image05"></b-img>
                             <a v-if="image05Url" class="btn btn-sm btn-outline-dark" :href="image05Url"
-                               style="margin-top:10px;">{{image05UrlText}}</a>
+                               style="margin-top:15px;">{{image05UrlText}}</a>
                         </div>
                     </slide>
                     <slide v-if="image06">
@@ -85,7 +85,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image06"></b-img>
                             <a v-if="image06Url" class="btn btn-sm btn-outline-dark" :href="image06Url"
-                               style="margin-top:10px;">{{image06UrlText}}</a>
+                               style="margin-top:15px;">{{image06UrlText}}</a>
                         </div>
                     </slide>
                     <slide v-if="image07">
@@ -96,7 +96,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image07"></b-img>
                             <a v-if="image07Url" class="btn btn-sm btn-outline-dark" :href="image07Url"
-                               style="margin-top:10px;">{{image07UrlText}}</a>
+                               style="margin-top:15px;">{{image07UrlText}}</a>
                         </div>
                     </slide>
                     <slide v-if="image08">
@@ -107,7 +107,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image08"></b-img>
                             <a v-if="image08Url" class="btn btn-sm btn-outline-dark" :href="image08Url"
-                               style="margin-top:10px;">{{image08UrlText}}</a>
+                               style="margin-top:15px;">{{image08UrlText}}</a>
                         </div>
                     </slide>
                     <slide v-if="image09">
@@ -118,7 +118,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image09"></b-img>
                             <a v-if="image09Url" class="btn btn-sm btn-outline-dark" :href="image09Url"
-                               style="margin-top:10px;">{{image09UrlText}}</a>
+                               style="margin-top:15px;">{{image09UrlText}}</a>
                         </div>
                     </slide>
                     <slide v-if="image10">
@@ -129,7 +129,7 @@
                             ></div>
                             <b-img v-else fluid-grow blank-color="#777" :src="image10"></b-img>
                             <a v-if="image10Url" class="btn btn-sm btn-outline-dark" :href="image10Url"
-                               style="margin-top:10px;">{{image10UrlText}}</a>
+                               style="margin-top:15px;">{{image10UrlText}}</a>
                         </div>
                     </slide>
                 </carousel>
@@ -355,7 +355,16 @@
 
 <style lang="scss">
     .CT_SLIDER_THUMBNAIL {
+        .rf-block-title-row {
+            padding-top:15px;
+            padding-bottom:15px;
+            text-align:center;
+        }
         .VueCarousel-pagination {
+
+            margin-top: -35px;
+            z-index: 10;
+
             .VueCarousel-dot-container {
                 margin-top: 0;
             }
@@ -381,6 +390,6 @@
         margin: 0;
         padding: 0;
         padding-bottom: 15px;
-        padding-top: 15px;
+        padding-top: 5px;
     }
 </style>

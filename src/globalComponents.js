@@ -10,6 +10,7 @@ import CT_USER_LOGIN from '@/components/CT_USER_LOGIN.vue'
 import CT_USER_LOGOUT from '@/components/CT_USER_LOGOUT.vue'
 import CT_USER_PASSWORD_FORGET from '@/components/CT_USER_PASSWORD_FORGET.vue'
 import CT_USER_PROFILE_WIDGET from '@/components/CT_USER_PROFILE_WIDGET.vue'
+import CT_MENU_SIDE from '@/components/CT_MENU_SIDE.vue'
 
 
 export default {
@@ -25,4 +26,5 @@ export default {
     'CT_USER_LOGOUT': CT_USER_LOGOUT,
     'CT_USER_PASSWORD_FORGET': CT_USER_PASSWORD_FORGET,
     'CT_USER_PROFILE_WIDGET': CT_USER_PROFILE_WIDGET,
+    'CT_MENU_SIDE': CT_MENU_SIDE,
 }

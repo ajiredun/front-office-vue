@@ -4,20 +4,20 @@
             :id="'CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT'+blockInfo.id"
             :class="'CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT ' + displays">
 
-        <b-row v-if="title">
+        <b-row v-if="title" class="rf-block-title-row">
             <b-col md="12" class="rf-block-title rf-primary">
                 <h2 class="title">{{ title }}</h2>
             </b-col>
         </b-row>
 
-        <b-row  class="content-container">
-            <b-col v-if="side=='left'" md="4">
+        <b-row  class="content-container  d-flex"  :style="style">
+            <b-col v-if="side=='left'" md="4"  class="align-self-center">
                 <b-img fluid-grow :src="image"></b-img>
             </b-col>
-            <b-col md="8" v-html="text">
+            <b-col md="8" v-html="text"  class="align-self-center">
 
             </b-col>
-            <b-col v-if="side=='right'" md="4">
+            <b-col v-if="side=='right'" md="4"  class="align-self-center">
                 <b-img fluid-grow :src="image"></b-img>
             </b-col>
         </b-row>
@@ -58,7 +58,10 @@
             return {
                 image: false,
                 side: 'left',
-                text: false
+                text: false,
+                style: {
+                    'backgroundColor': "rgba(255,255,255,0);"
+                }
             };
         },
         methods: {
@@ -70,6 +73,10 @@
 
                 if (properties.side) {
                     this.side = properties.side
+                }
+
+                if ( properties.background != undefined ) {
+                    this.style.backgroundColor = properties.background
                 }
 
                 this.switchToReal = true
@@ -84,5 +91,20 @@
         padding: 0;
         padding-bottom: 15px;
         padding-top: 15px;
+        .col-md-8 {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            vertical-align: middle;
+        }
+        .col-md-4 {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            vertical-align: middle;
+        }
+        .rf-block-title-row {
+            padding-top:15px;
+            padding-bottom:15px;
+            text-align:center;
+        }
     }
 </style>
