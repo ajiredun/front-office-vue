@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueMeta from 'vue-meta'
 import BootstrapVue from 'bootstrap-vue'
 
+Vue.use(BootstrapVue)
+
 import './custom.scss'
 
 import App from './App.vue'
@@ -10,7 +12,6 @@ import store from './store'
 import './registerServiceWorker'
 import axios from 'axios'
 
-Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
 

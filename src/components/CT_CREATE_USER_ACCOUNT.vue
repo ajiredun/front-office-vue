@@ -206,7 +206,7 @@
                     })
                     .catch((error) => {
 
-                        this.response.success = data.success;
+                        this.response.success = false;
                         this.response.message = this.processApiErrors(error, {
                             default: "An error occurred. Please contact admin",
                             error404: "Block not found",

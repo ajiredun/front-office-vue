@@ -99,10 +99,8 @@
 <script>
     import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
-    import RfFormTitle from "./base/RF_FORM_TITLE";
 
     export default {
-        components: {RfFormTitle},
         extends: componentLifecycle,
         data() {
             return {

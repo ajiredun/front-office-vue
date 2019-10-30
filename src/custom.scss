@@ -89,12 +89,36 @@ $font-family-base:       $font-family-sans-serif !default;
   background-color: theme-color("danger");
 }
 
+.rf-request-information {
+  margin-top:15px;
+  text-align:center;
+}
+
+.fade-enter{
+  opacity: 0;
+}
+.fade-enter-active{
+  transition: opacity 1s;
+}
+.fade-leave{
+  /* opacity: 1; */
+}
+.fade-leave-active{
+  transition: opacity 1s;
+  opacity: 0;
+}
+
 .rf-fill {
   width:98%;
   min-height:100px;
   height:100%;
   padding:1%;
   margin:0;
+}
+
+.padding-left-right {
+  padding-left:15px;
+  padding-right:15px;
 }
 
 .rf-fill-align-center {

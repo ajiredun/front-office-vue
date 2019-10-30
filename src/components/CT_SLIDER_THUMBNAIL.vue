@@ -390,6 +390,5 @@
         margin: 0;
         padding: 0;
         padding-bottom: 15px;
-        padding-top: 5px;
     }
 </style>

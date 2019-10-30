@@ -36,10 +36,8 @@
 <script>
     import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
-    import RfContentTitle from "./base/RF_CONTENT_TITLE";
 
     export default {
-        components: {RfContentTitle},
         extends: componentLifecycle,
         data() {
             return {
