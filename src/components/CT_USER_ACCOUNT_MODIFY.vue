@@ -1,7 +1,7 @@
 <template>
-    <div    v-if="switchToReal"
-            :id="'CT_USER_ACCOUNT_MODIFY_'+blockInfo.id"
-            :class="'CT_USER_ACCOUNT_MODIFY ' + displays">
+    <div v-if="switchToReal"
+         :id="'CT_USER_ACCOUNT_MODIFY_'+blockInfo.id"
+         :class="'CT_USER_ACCOUNT_MODIFY ' + displays">
 
         <b-row no-gutters class="padding-left-right">
             <b-col md="12">
@@ -10,7 +10,7 @@
                     <div class="card-header rf-background-info rf-neutral"></div>
                     <div class="card-body">
                         <h4 class="card-title">Account Details</h4>
-                        <transition name="fade"  mode="out-in">
+                        <transition name="fade" mode="out-in">
                             <b-form @submit="onSubmit" id="form_register" v-if="formVisible"
                                     class="mb-3"
                                     style="margin-top: 27px;">
@@ -93,11 +93,12 @@
                                 <b-row>
                                     <b-col md="12">
                                         <b-button v-if="rf_loading" type="button" class="btn-block" variant="neutral">
-                                            <b-spinner style="width: 2rem; height: 2rem;" label="Large Spinner" type="grow"></b-spinner>
+                                            <b-spinner style="width: 2rem; height: 2rem;" label="Large Spinner"
+                                                       type="grow"></b-spinner>
                                         </b-button>
                                         <div v-else class="d-flex justify-content-between">
-                                            <b-button type="submit"  variant="warning">
-                                                <i class="fab fa-user-edit"></i> &nbsp;&nbsp; Update
+                                            <b-button type="submit" variant="warning">
+                                                <i class="fas fa-user-edit"></i> &nbsp;&nbsp; Update
                                             </b-button>
                                             <b-button type="button" variant="neutral" @click="toggleFormVisible">
                                                 <i class="fas fa-times-circle"></i>
@@ -105,17 +106,15 @@
                                         </div>
                                     </b-col>
                                 </b-row>
-                                <b-row  class="rf-request-information" v-if="error_message">
+                                <b-row class="rf-request-information" v-if="error_message">
                                     <b-col md="12" class="rf-warning">
                                         <i class="fas fa-exclamation-triangle fa-2x"/>
                                         <br/><br/>
                                         <h5 class="title">{{error_message}}</h5>
                                     </b-col>
                                 </b-row>
-                                <b-row  class="rf-request-information"  v-if="follow_up">
+                                <b-row class="rf-request-information" v-if="follow_up">
                                     <b-col md="12" class="rf-secondary">
-                                        <i v-if="follow_up" class="fas fa-spinner fa-2x fa-spin"></i>
-                                        <br/>
                                         <br/>
                                         <h5 class="title">{{follow_up}}</h5>
                                     </b-col>
@@ -124,7 +123,7 @@
                             <b-button v-else
                                       @click="toggleFormVisible"
                                       class="btn-block" variant="info">
-                                <i class="fab fa-user-edit"></i> &nbsp;&nbsp; Update
+                                <i class="fas fa-user-edit"></i> &nbsp;&nbsp; Update
                             </b-button>
                         </transition>
                     </div>
@@ -134,7 +133,7 @@
         </b-row>
 
     </div>
-    <div v-else :id="'MOCKUP_CT_USER_ACCOUNT_MODIFY_'+blockInfo.id"  class="CT_USER_ACCOUNT_MODIFY">
+    <div v-else :id="'MOCKUP_CT_USER_ACCOUNT_MODIFY_'+blockInfo.id" class="CT_USER_ACCOUNT_MODIFY">
         <b-row>
             <b-col md="12">
                 <div class="mockup-container">
@@ -186,8 +185,76 @@
                     this.formVisible = false
                 } else {
                     this.formVisible = true
+                    this.fetchUser()
                 }
             },
+            onSubmit(evt) {
+                evt.preventDefault()
+                this.rf_loading = true
+                this.follow_up = "Processing your request"
+
+                axios.post(this.$store.state.api.userModifyAccount + "?" + this.$store.getters.getUrlToken, {
+                    input_mobile: this.form.input_mobile,
+                    input_address: this.form.input_address,
+                    input_country: this.form.input_country,
+                    input_zipcode: this.form.input_zipcode,
+                    input_firstname: this.form.input_firstname,
+                    input_lastname: this.form.input_lastname,
+                })
+                    .then((response) => {
+                        this.follow_up = false
+                        let data = response.data
+                        if (data.success) {
+                            this.error_message = false
+                            this.follow_up = data.message
+
+                            window.location.reload(true)
+
+                        } else {
+                            this.error_message = data.message
+                            this.follow_up = false
+                        }
+                        this.rf_loading = false
+                    })
+                    .catch((error) => {
+                        this.follow_up = false
+                        this.error_message = this.processApiErrors(error, {
+                            default: "An error occurred. Please contact admin",
+                            error404: "Block not found",
+                            error401: "Unauthorized access",
+                            error403: "You do not have access to this content"
+                        })
+                        this.rf_loading = false
+                    });
+
+
+
+            },
+            fetchUser() {
+                axios.get(this.$store.state.api.userDetails + "/" + this.getCurrentUserInfo.id + "?" + this.$store.getters.getUrlToken)
+                    .then((response) => {
+                        let user = response.data
+
+                        this.form.input_mobile = user.mobile
+                        this.form.input_address = user.address
+                        this.form.input_country = user.country
+                        this.form.input_zipcode = user.zipcode
+                        this.form.input_firstname = user.firstname
+                        this.form.input_lastname = user.lastname
+
+
+                        this.switchToReal = true
+                    })
+                    .catch((error) => {
+                        this.error_info = this.processApiErrors(error, {
+                            default: "An error occured while getting your info",
+                            error404: "Page not found",
+                            error401: "Unauthorized access"
+                        })
+
+                        console.log('Error previewing: ' + error)
+                    });
+            }
         }
     }
 </script>

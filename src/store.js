@@ -23,6 +23,7 @@ export default new Vuex.Store({
             userForgetPassword: "https://back.dev.ajiredun.com/api/forgot-password",
             userModifyPassword: "https://back.dev.ajiredun.com/api/modify-password",
             userActivateAccount: "https://back.dev.ajiredun.com/api/activate",
+            userModifyAccount: "https://back.dev.ajiredun.com/api/modify-account",
             previewPage: "https://back.dev.ajiredun.com/api/pages",
         },
         authentication: {

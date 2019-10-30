@@ -48,7 +48,7 @@
                     <b-nav-item-dropdown v-if="menuVirtualItems.virtual_user_account" right>
                         <!-- Using 'button-content' slot -->
                         <template v-slot:button-content>
-                            <img v-if="isAuthenticated" :src="'https://robohash.org/aj'+getCurrentUserInfo.id+'?set=set4&size=50x50'" />
+                            <img v-if="isAuthenticated" :src="'https://robohash.org/aj'+getCurrentUserInfo.id+'?set=set4&size=50x50'" :title="getCurrentUserInfo.name" />
                             <em v-else><i class="fas fa-user fa-2x"></i></em>
                         </template>
 
