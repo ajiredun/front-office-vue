@@ -1,5 +1,4 @@
 import {mapState, mapGetters} from 'vuex';
-import axios from 'axios'
 import GlobalComponents from '@/globalComponents.js'
 
 export default {
@@ -96,6 +95,7 @@ export default {
         ])
     },
     mounted() {
+        console.log(this.blockInfo)
         let url = this.$store.state.api.getBlockData + this.blockInfo.id
         let params = {
             url: url,

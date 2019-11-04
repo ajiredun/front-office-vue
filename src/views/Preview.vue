@@ -30,7 +30,6 @@
 
     import Vue from 'vue'
     import LayoutComponents from '@/globalLayouts.js'
-    import {mapState, mapGetters} from 'vuex';
     import axios from 'axios'
 
     export default {
@@ -72,8 +71,6 @@
                                 propsData: { pageInfo: page }
                             })
                             instance.$mount()
-                            let containerId = "PREVIEW_CONTAINER"
-                            console.log(this)
                             this.$refs[currentPreviewId].appendChild(instance.$el)
                             this.previewMode = true
                             this.follow_up = false
@@ -86,8 +83,6 @@
                                 error404: "Page not found",
                                 error401: "Unauthorized access"
                             })
-
-                            console.log('Error previewing: ' + error)
                         });
 
 

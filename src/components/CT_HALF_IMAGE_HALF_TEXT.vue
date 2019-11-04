@@ -49,7 +49,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
 
     export default {
@@ -97,6 +96,8 @@
 
     .CT_HALF_IMAGE_HALF_TEXT , .content-container {
         margin: 0;
+        margin-top:15px;
+        margin-bottom:15px;
         padding: 0;
         padding-bottom: 15px;
         padding-top: 15px;

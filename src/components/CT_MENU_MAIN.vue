@@ -48,7 +48,7 @@
                     <b-nav-item-dropdown v-if="menuVirtualItems.virtual_user_account" right>
                         <!-- Using 'button-content' slot -->
                         <template v-slot:button-content>
-                            <img v-if="isAuthenticated" :src="'https://robohash.org/aj'+getCurrentUserInfo.id+'?set=set4&size=50x50'" :title="getCurrentUserInfo.name" />
+                            <img v-if="isAuthenticated" :src="'https://robohash.org/aj'+getCurrentUserInfo.id+'?set=set4&size=40x40'" :title="getCurrentUserInfo.name" />
                             <em v-else><i class="fas fa-user fa-2x"></i></em>
                         </template>
 
@@ -74,7 +74,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
 
     export default {
@@ -86,12 +85,6 @@
             };
         },
         computed: {
-            allowedMenuItems() {
-                /*return this.menuItems.filter((item) => {
-                    return this.showMenu(item)
-                });*/
-            },
-
         },
         methods: {
             processData(block) {
@@ -254,8 +247,8 @@
 <style lang="scss">
     .CT_MENU_MAIN {
         .nav-logo {
-            width: 50px;
-            height: 50px;
+            width: 150px;
+            max-height: 60px;
         }
 
         .navbar-toggler {
@@ -263,9 +256,8 @@
         }
 
         .navbar {
-            margin-top: 5px;
-            margin-bottom: 5px;
-            box-shadow: 200px -20px 40px #2866B3;
+            box-shadow: 0 6px 15px gainsboro;
+            border-bottom:3px solid #2866B3;
         }
     }
 </style>

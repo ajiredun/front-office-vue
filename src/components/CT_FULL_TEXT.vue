@@ -2,7 +2,9 @@
     <div
         v-if="switchToReal"
         :id="'CT_FULL_TEXT'+blockInfo.id"
-        :class="'CT_FULL_TEXT ' + displays">
+        :class="'CT_FULL_TEXT ' + displays"
+        :style="style"
+    >
 
         <b-row class="rf-block-title-row" no-gutters v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">
@@ -10,7 +12,7 @@
             </b-col>
         </b-row>
 
-        <b-row class="content-container" :style="style">
+        <b-row class="content-container">
             <b-col md="12" v-html="text"></b-col>
         </b-row>
 
@@ -34,7 +36,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
 
     export default {
@@ -69,6 +70,8 @@
 <style lang="scss">
     .CT_FULL_TEXT, .content-container {
         margin: 0;
+        margin-top:15px;
+        margin-bottom:15px;
         padding-bottom: 15px;
         padding-top: 15px;
     }

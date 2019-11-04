@@ -29,7 +29,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
 
     export default {

@@ -49,7 +49,6 @@
 <script>
     import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
-    import router from '@/router'
 
     export default {
         extends: componentLifecycle,

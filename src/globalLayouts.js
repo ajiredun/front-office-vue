@@ -10,6 +10,7 @@ import L_LAYOUT_09 from '@/views/L_LAYOUT_09.vue'
 import L_LAYOUT_10 from '@/views/L_LAYOUT_10.vue'
 import L_LAYOUT_11 from '@/views/L_LAYOUT_11.vue'
 import L_LAYOUT_12 from '@/views/L_LAYOUT_12.vue'
+import L_LAYOUT_13 from '@/views/L_LAYOUT_13.vue'
 
 
 export default {
@@ -25,4 +26,5 @@ export default {
     'L_LAYOUT_10': L_LAYOUT_10,
     'L_LAYOUT_11': L_LAYOUT_11,
     'L_LAYOUT_12': L_LAYOUT_12,
+    'L_LAYOUT_13': L_LAYOUT_13,
 }

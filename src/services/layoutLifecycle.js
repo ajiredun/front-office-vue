@@ -1,7 +1,5 @@
-import {mapState, mapGetters} from 'vuex';
-import router from '@/router'
+
 import GlobalComponents from '@/globalComponents.js'
-import axios from 'axios'
 
 export default {
     components: {
@@ -43,15 +41,6 @@ export default {
     data() {
 
         this.$store.dispatch('setPageInfo',this.pageInfo)
-
-        let path = this.$route.path;
-        //console.log(path)
-
-        let params = this.$route.params;
-        //console.log(params)
-
-        let query = this.$route.query;
-        //console.log(query)
 
         return {
 

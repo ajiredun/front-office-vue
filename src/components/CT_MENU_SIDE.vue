@@ -5,7 +5,7 @@
 
         <b-row v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">
-                <h2 class="title">{{ title }}</h2>
+                <h4 class="title">{{ title }}</h4>
             </b-col>
         </b-row>
 
@@ -39,7 +39,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
     import componentLifecycle from '@/services/componentLifecycle.js'
 
     export default {
@@ -180,6 +179,9 @@
     .CT_MENU_SIDE {
         padding-left:15px;
         padding-right:15px;
+        margin:0;
+        margin-top:15px;
+        margin-bottom:15px;
         .dropdown button.btn {
             background: gainsboro;
             max-width: 50px;
