@@ -381,6 +381,7 @@
         .btn-link-slider {
             color: #fff;
             box-shadow: 2px 2px 5px white;
+            background: #343A40;
             border: 2px solid white;
         }
 

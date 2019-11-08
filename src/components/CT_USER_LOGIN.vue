@@ -21,7 +21,7 @@
                             label-for="input-1"
                     >
 
-                        <b-row no-gutters>
+                        <b-row>
                             <b-col md="12">
                                 <b-form-input
                                         id="input-1"

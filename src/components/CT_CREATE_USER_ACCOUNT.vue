@@ -50,7 +50,7 @@
                             label-for="input-1"
                     >
 
-                        <b-row no-gutters>
+                        <b-row>
                             <b-col md="12">
                                 <b-form-input
                                         id="input-1"
@@ -84,29 +84,39 @@
                     </b-form-group>
 
                     <b-form-group id="input-group-4">
-                        <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
-                            <!--<b-form-checkbox value="newsletter">Subscribe to our newsletter</b-form-checkbox>-->
-                            <b-form-checkbox required="required" @change="onCheckTermsAndConditions($event)"
-                                             value="termsAndConditions">I agree with the Terms & Conditions
-                            </b-form-checkbox>
-                        </b-form-checkbox-group>
-                        <div class="error_message" v-if="error_terms_and_conditions"><span
-                                style="font-size:10px; color:red;">You must agree with our Terms & Conditions to be able to register</span>
-                        </div>
 
-                        <div v-if="response.status">
-                            <span style="color:green;font-weight: bold;">{{response.message}}</span>
-                        </div>
-                        <div v-else style="width:96%;padding:2%;color:red;font-weight: bold;">
-                            <span>{{response.message}}</span>
-                        </div>
+                        <b-row>
+                            <b-col md="12">
+                                <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
+                                    <!--<b-form-checkbox value="newsletter">Subscribe to our newsletter</b-form-checkbox>-->
+                                    <b-form-checkbox required="required" @change="onCheckTermsAndConditions($event)"
+                                                     value="termsAndConditions">I agree with the Terms & Conditions
+                                    </b-form-checkbox>
+                                </b-form-checkbox-group>
+                                <div class="error_message" v-if="error_terms_and_conditions"><span
+                                        style="font-size:10px; color:red;">You must agree with our Terms & Conditions to be able to register</span>
+                                </div>
+
+                                <div v-if="response.status">
+                                    <span style="color:green;font-weight: bold;">{{response.message}}</span>
+                                </div>
+                                <div v-else style="width:96%;padding:2%;color:red;font-weight: bold;">
+                                    <span>{{response.message}}</span>
+                                </div>
+                            </b-col>
+                        </b-row>
+
                     </b-form-group>
+                    <b-row>
+                        <b-col md="12">
+                            <b-spinner v-if="rf_loading" style="width: 2rem; height: 2rem;" label="Large Spinner" type="grow"></b-spinner>
+                            <div v-else>
+                                <b-button type="submit" variant="primary" style="margin-right:15px;">Submit</b-button>
+                                <b-button type="reset" variant="danger">Reset</b-button>
+                            </div>
+                        </b-col>
+                    </b-row>
 
-                    <b-spinner v-if="rf_loading" style="width: 2rem; height: 2rem;" label="Large Spinner" type="grow"></b-spinner>
-                    <div v-else>
-                        <b-button type="submit" variant="primary">Submit</b-button>
-                        <b-button type="reset" variant="danger">Reset</b-button>
-                    </div>
                 </b-form>
                 <b-row>
                     <b-col md="12">

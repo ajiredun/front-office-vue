@@ -3,7 +3,7 @@
             v-if="switchToReal"
             :class="'CT_MENU_MAIN ' + displays">
 
-        <b-navbar toggleable="lg" sticky="true" type="light" variant="white">
+        <b-navbar toggleable="lg" sticky="true" type="dark" variant="dark">
             <b-navbar-brand
                     v-if="menuVirtualItems.virtual_logo"
                     :title="menuVirtualItems.virtual_logo.routeInfo.name"
@@ -35,7 +35,6 @@
                             :to="item.routeInfo.route + item.routeInfo.routeParams">
                         {{ item.routeInfo.name }}
                     </b-nav-item>
-
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->
@@ -49,7 +48,7 @@
                         <!-- Using 'button-content' slot -->
                         <template v-slot:button-content>
                             <img v-if="isAuthenticated" :src="'https://robohash.org/aj'+getCurrentUserInfo.id+'?set=set4&size=40x40'" :title="getCurrentUserInfo.name" />
-                            <em v-else><i class="fas fa-user fa-2x"></i></em>
+                            <em v-else><i class="fas fa-user"></i></em>
                         </template>
 
                         <b-dropdown-item
@@ -64,7 +63,7 @@
         </b-navbar>
     </div>
     <div v-else class="CT_MENU_MAIN">
-        <b-navbar toggleable="lg" sticky="true" type="light" variant="white">
+        <b-navbar toggleable="lg" sticky="true" type="dark" variant="dark">
             <b-navbar-brand to="/">
                 <b-img class="nav-logo" blank-color="#777" src="img/logo.png"></b-img>
             </b-navbar-brand>
@@ -256,7 +255,7 @@
         }
 
         .navbar {
-            box-shadow: 0 6px 15px gainsboro;
+            box-shadow: 0 -3px 18px #000000;
             border-bottom:3px solid #2866B3;
         }
     }
