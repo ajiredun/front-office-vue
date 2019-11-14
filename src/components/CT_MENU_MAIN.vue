@@ -3,7 +3,7 @@
             v-if="switchToReal"
             :class="'CT_MENU_MAIN ' + displays">
 
-        <b-navbar toggleable="lg" sticky="true" type="dark" variant="dark">
+        <b-navbar toggleable="lg" sticky="true" type="light" variant="light">
             <b-navbar-brand
                     v-if="menuVirtualItems.virtual_logo"
                     :title="menuVirtualItems.virtual_logo.routeInfo.name"
@@ -63,11 +63,10 @@
         </b-navbar>
     </div>
     <div v-else class="CT_MENU_MAIN">
-        <b-navbar toggleable="lg" sticky="true" type="dark" variant="dark">
+        <b-navbar toggleable="lg" sticky="true" type="light" variant="light">
             <b-navbar-brand to="/">
                 <b-img class="nav-logo" blank-color="#777" src="img/logo.png"></b-img>
             </b-navbar-brand>
-
         </b-navbar>
     </div>
 </template>
