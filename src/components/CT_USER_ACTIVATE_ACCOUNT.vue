@@ -2,7 +2,7 @@
     <div
             :id="'CT_USER_ACTIVATE_ACCOUNT_'+blockInfo.id"
             v-if="switchToReal"
-           :class="'CT_USER_ACTIVATE_ACCOUNT ' + displays">
+           :class="'CT_USER_ACTIVATE_ACCOUNT ' + displays + ' ' + classPadding">
 
         <b-row v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">

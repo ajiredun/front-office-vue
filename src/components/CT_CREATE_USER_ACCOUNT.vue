@@ -1,6 +1,6 @@
 <template>
     <div no-gutters :id="'CT_CREATE_USER_ACCOUNT_'+blockInfo.id" v-if="switchToReal"
-         :class="'CT_CREATE_USER_ACCOUNT rf-title-margin-div ' + displays ">
+         :class="'CT_CREATE_USER_ACCOUNT rf-title-margin-div ' + displays  + ' ' + classPadding">
         <b-row no-gutters class="rf-title-margin">
             <b-col md="12" class="rf-block-title rf-neutral rf-background-primary" v-if="title">
                 <h2 class="title">{{title}}</h2>

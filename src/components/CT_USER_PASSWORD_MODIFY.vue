@@ -1,7 +1,7 @@
 <template>
     <div v-if="switchToReal"
          :id="'CT_USER_PASSWORD_MODIFY_'+blockInfo.id"
-         :class="'CT_USER_PASSWORD_MODIFY ' + displays">
+         :class="'CT_USER_PASSWORD_MODIFY ' + displays + ' ' + classPadding">
         <b-row no-gutters class="padding-left-right">
             <b-col md="12">
 

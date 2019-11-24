@@ -1,7 +1,7 @@
 <template>
     <div    v-if="switchToReal"
             :id="'CT_USER_LOGOUT_'+blockInfo.id"
-            :class="'CT_USER_LOGOUT ' + displays">
+            :class="'CT_USER_LOGOUT ' + displays + ' ' + classPadding">
 
         <b-row v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">

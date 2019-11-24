@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.a1dc6f364d20be38fff5530e64f293ea.js"
+  "/precache-manifest.797b73ce57688e511e49934142b182e6.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "front-office-vue"});

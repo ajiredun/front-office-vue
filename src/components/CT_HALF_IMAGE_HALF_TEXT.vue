@@ -2,7 +2,7 @@
     <div
         :id="'CT_HALF_IMAGE_HALF_TEXT'+blockInfo.id"
         v-if="switchToReal"
-        :class="'CT_HALF_IMAGE_HALF_TEXT ' + displays">
+        :class="'CT_HALF_IMAGE_HALF_TEXT ' + displays + ' ' + classPadding">
 
         <b-row class="rf-block-title-row" v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">

@@ -1,7 +1,7 @@
 <template>
     <div v-if="switchToReal"
-         :id="'CT_MENU_SIDE_'+blockInfo.id"
-         :class="'CT_MENU_SIDE ' + displays + ' ' + classPadding">
+         :id="'CT_MENU_CATEGORY_'+blockInfo.id"
+         :class="'CT_MENU_CATEGORY ' + displays + ' ' + classPadding">
 
         <b-row v-if="title">
             <b-col md="12" class="rf-block-title rf-primary">
@@ -12,19 +12,19 @@
         <b-row no-gutters>
             <b-col md="12">
                 <div  v-for="item in menuItems">
-                    <b-dropdown  v-if="hasChildren(item)"  :text="item.routeInfo.name" right  variant="neutral" class="rf-link-menu">
+                    <b-dropdown  v-if="hasChildren(item)"  :text="item.routeInfo.name" right  variant="secondary" class="rf-link-menu">
                         <b-dropdown-item v-for="subItem in item.children"
                                          :title="subItem.routeInfo.name"
                                          :to="subItem.routeInfo.route + subItem.routeInfo.routeParams">
                             {{ subItem.routeInfo.name }}
                         </b-dropdown-item>
                     </b-dropdown>
-                    <b-button v-else variant="neutral" :to="item.routeInfo.route + item.routeInfo.routeParams" class="rf-link-menu">{{ item.routeInfo.name }}</b-button>
+                    <b-button v-else variant="secondary" :to="item.routeInfo.route + item.routeInfo.routeParams" class="rf-link-menu">{{ item.routeInfo.name }}</b-button>
                 </div>
             </b-col>
         </b-row>
     </div>
-    <div v-else :id="'MOCKUP_CT_MENU_SIDE_'+blockInfo.id" class="CT_MENU_SIDE">
+    <div v-else :id="'MOCKUP_CT_MENU_CATEGORY_'+blockInfo.id" class="CT_MENU_CATEGORY">
         <b-row>
             <b-col md="12">
                 <div class="mockup-container">
@@ -50,7 +50,7 @@
         },
         methods: {
             processData(block) {
-                console.log("Processing CT_MENU_SIDE block: " + block.id)
+                console.log("Processing CT_MENU_CATEGORY block: " + block.id)
                 console.log(block)
                 let properties = block.properties
                 this.mapBasicBlockProperties(properties)
@@ -176,8 +176,9 @@
 </script>
 
 <style lang="scss">
-    .CT_MENU_SIDE {
+    .CT_MENU_CATEGORY {
         margin:0;
+        background: #343A40;
         .dropdown button.btn {
             text-align: left;
         }

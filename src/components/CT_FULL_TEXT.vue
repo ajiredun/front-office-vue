@@ -2,7 +2,7 @@
     <div
         v-if="switchToReal"
         :id="'CT_FULL_TEXT'+blockInfo.id"
-        :class="'CT_FULL_TEXT ' + displays"
+        :class="'CT_FULL_TEXT ' + displays + ' ' + classPadding"
         :style="style"
     >
 
@@ -12,8 +12,8 @@
             </b-col>
         </b-row>
 
-        <b-row class="content-container">
-            <b-col md="12" v-html="text"></b-col>
+        <b-row no-gutters class="content-container">
+            <b-col md="12"  v-html="text"></b-col>
         </b-row>
 
     </div>

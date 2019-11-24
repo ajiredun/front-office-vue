@@ -2,7 +2,7 @@
     <div
             v-if="switchToReal"
             :id="'CT_SLIDER_THUMBNAIL_'+blockInfo.id"
-            :class="'CT_SLIDER_THUMBNAIL ' + displays">
+            :class="'CT_SLIDER_THUMBNAIL ' + displays + ' ' + classPadding">
 
         <b-row  v-if="title"  class="rf-block-title-row">
             <b-col md="12" class="rf-block-title rf-primary">
@@ -21,6 +21,7 @@
                         :autoplayTimeout="autoplayTimeout"
                         :autoplayHoverPause="true"
                         :scrollPerPage="false"
+                        :navigationEnabled="true"
                         :perPageCustom="[[100, 1],[576, slideQtyInMobile],[768,slideQtyInTablet],[992,slideQtyInDesktop]]">
                     <slide v-if="image01">
                         <div style="width:100%; text-align:center;">
@@ -221,8 +222,8 @@
 
                 // carousel docs
                 // :: https://ssense.github.io/vue-carousel/api/
-                //console.log("Processing CT_SLIDER_THUMBNAIL: " + block.id)
-                //console.log(block)
+                console.log("Processing CT_SLIDER_THUMBNAIL: " + block.id)
+                console.log(block)
                 let properties = block.properties
                 this.mapBasicBlockProperties(properties)
 
@@ -373,6 +374,18 @@
             }
         }
 
+        .VueCarousel-navigation-next
+        {
+            padding:0;
+            margin-right: 30px;
+        }
+
+        .VueCarousel-navigation-prev
+        {
+            padding:0;
+            margin-left: 30px;
+        }
+
         .col-md-12 {
             padding-right: 0;
             padding-left: 0;
@@ -394,6 +407,5 @@
         }
 
         margin: 0;
-        padding: 0;
     }
 </style>

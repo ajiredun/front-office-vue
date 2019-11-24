@@ -48,7 +48,7 @@
                         <!-- Using 'button-content' slot -->
                         <template v-slot:button-content>
                             <img v-if="isAuthenticated" :src="'https://robohash.org/aj'+getCurrentUserInfo.id+'?set=set4&size=40x40'" :title="getCurrentUserInfo.name" />
-                            <em v-else><i class="fas fa-user"></i></em>
+                            <em v-else><i class="fas fa-user fa-2x"></i></em>
                         </template>
 
                         <b-dropdown-item
@@ -254,8 +254,13 @@
         }
 
         .navbar {
-            box-shadow: 0 -3px 18px #000000;
-            border-bottom:3px solid #2866B3;
+            border-bottom:2px solid #2866B3;
+            background:white;
+        }
+
+        .dropdown-menu {
+            border:0;
+            border-bottom:2px solid #2866B3;
         }
     }
 </style>

@@ -2,7 +2,7 @@
     <div
             v-if="switchToReal"
             :id="'CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT'+blockInfo.id"
-            :class="'CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT ' + displays">
+            :class="'CT_ONE_THIRD_IMAGE_TWO_THIRD_TEXT ' + displays + ' ' + classPadding">
 
         <b-row v-if="title" class="rf-block-title-row">
             <b-col md="12" class="rf-block-title rf-primary">

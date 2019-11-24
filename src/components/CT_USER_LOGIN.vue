@@ -3,7 +3,7 @@
             v-if="switchToReal"
             :style="{ fontSize: postFontSize + 'em' }"
             :id="'CT_USER_LOGIN_'+blockInfo.id"
-            :class="'CT_USER_LOGIN rf-title-margin-div ' + displays">
+            :class="'CT_USER_LOGIN rf-title-margin-div ' + displays + ' ' + classPadding">
 
         <b-row no-gutters class="rf-title-margin">
             <b-col md="12"  v-if="title" class="rf-block-title rf-neutral rf-background-secondary">

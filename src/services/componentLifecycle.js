@@ -15,6 +15,7 @@ export default {
             error_info: '', //use to display access errors
             title: false,
             displays: '',
+            padding: false,
             error_message: false, // use within the component template
             follow_up: false // use within the component template for user information
         };
@@ -23,6 +24,10 @@ export default {
         mapBasicBlockProperties(properties) {
             if (properties.title) {
                 this.title = properties.title
+            }
+
+            if (properties.padding) {
+                this.padding = properties.padding
             }
 
             if (properties.text) {
@@ -92,10 +97,17 @@ export default {
             'isAuthorized',
             'isAuthenticated',
             'getUrlToken'
-        ])
+        ]),
+        classPadding() {
+
+            if (this.padding) {
+                return 'rf-padding'
+            } else {
+                return ''
+            }
+        }
     },
     mounted() {
-        console.log(this.blockInfo)
         let url = this.$store.state.api.getBlockData + this.blockInfo.id
         let params = {
             url: url,

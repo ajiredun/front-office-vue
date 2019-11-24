@@ -215,6 +215,10 @@ $font-family-base:       $font-family-sans-serif !default;
   margin: 0 10px 0 10px;
 }
 
+.rf-padding {
+  padding:15px;
+}
+
 
 
 @media screen and (max-width: 2400px) {
@@ -322,6 +326,14 @@ $font-family-base:       $font-family-sans-serif !default;
   }
   .show_in_mobile{
     display:block;
+  }
+
+  .no-padding-mobile {
+    padding:0;
+  }
+
+  .margin-top-mobile {
+    margin-top:15px;
   }
 }
 

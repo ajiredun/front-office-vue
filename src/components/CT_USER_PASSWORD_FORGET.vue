@@ -1,7 +1,7 @@
 <template>
     <div    v-if="switchToReal"
             :id="'CT_USER_PASSWORD_FORGET_'+blockInfo.id"
-            :class="'CT_USER_PASSWORD_FORGET  rf-title-margin-div' + displays">
+            :class="'CT_USER_PASSWORD_FORGET  rf-title-margin-div' + displays + ' ' + classPadding">
 
 
         <b-row v-if="title">
