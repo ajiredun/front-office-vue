@@ -12,13 +12,13 @@
 
         <b-row  class="content-container  d-flex"  :style="style">
             <b-col v-if="side=='left'" md="4"  class="align-self-center">
-                <b-img fluid-grow :src="image"></b-img>
+                <b-img-lazy fluid-grow :src="image"></b-img-lazy>
             </b-col>
             <b-col md="8" v-html="text"  class="align-self-center">
 
             </b-col>
             <b-col v-if="side=='right'" md="4"  class="align-self-center">
-                <b-img fluid-grow :src="image"></b-img>
+                <b-img-lazy fluid-grow :src="image"></b-img-lazy>
             </b-col>
         </b-row>
 

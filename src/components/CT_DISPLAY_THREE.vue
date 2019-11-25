@@ -5,21 +5,21 @@
         <b-row>
             <b-col sm="4" class="margin-top-mobile">
                 <a v-if="image01Url" :href="image01Url">
-                    <b-img fluid-grow blank-color="#777" :src="image01" class="display-medium-image"></b-img>
+                    <b-img-lazy fluid-grow blank-color="#777" :src="image01" class="display-medium-image"></b-img-lazy>
                 </a>
-                <b-img v-else fluid-grow blank-color="#777" :src="image01" class="display-medium-image"></b-img>
+                <b-img-lazy v-else fluid-grow blank-color="#777" :src="image01" class="display-medium-image"></b-img-lazy>
             </b-col>
             <b-col sm="4" class="margin-top-mobile">
                 <a v-if="image02Url" :href="image02Url">
-                    <b-img fluid-grow blank-color="#777" :src="image02" class="display-medium-image"></b-img>
+                    <b-img-lazy fluid-grow blank-color="#777" :src="image02" class="display-medium-image"></b-img-lazy>
                 </a>
-                <b-img v-else fluid-grow blank-color="#777" :src="image02" class="display-medium-image"></b-img>
+                <b-img-lazy v-else fluid-grow blank-color="#777" :src="image02" class="display-medium-image"></b-img-lazy>
             </b-col>
             <b-col sm="4" class="margin-top-mobile">
                 <a v-if="image03Url" :href="image03Url">
-                    <b-img fluid-grow blank-color="#777" :src="image02" class="display-medium-image"></b-img>
+                    <b-img-lazy fluid-grow blank-color="#777" :src="image02" class="display-medium-image"></b-img-lazy>
                 </a>
-                <b-img v-else fluid-grow blank-color="#777" :src="image02" class="display-medium-image"></b-img>
+                <b-img-lazy v-else fluid-grow blank-color="#777" :src="image02" class="display-medium-image"></b-img-lazy>
             </b-col>
         </b-row>
     </div>

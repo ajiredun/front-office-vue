@@ -5,9 +5,9 @@
         <b-row no-gutters>
             <b-col md="12" style="text-align: center;">
                 <a v-if="image01Url" :href="image01Url">
-                    <b-img fluid-grow blank-color="#777" :src="image01" class="display-image"></b-img>
+                    <b-img-lazy fluid-grow blank-color="#777" :src="image01" class="display-image"></b-img-lazy>
                 </a>
-                <b-img v-else fluid-grow blank-color="#777" :src="image01" class="display-image"></b-img>
+                <b-img-lazy v-else fluid-grow blank-color="#777" :src="image01" class="display-image"></b-img-lazy>
             </b-col>
         </b-row>
     </div>
@@ -15,7 +15,7 @@
         <b-row>
             <b-col md="12">
                 <div class="mockup-container">
-                    <div class="mockup-img"></div>
+                    <div class="mockup-img" style="max-height: 150px;"></div>
                 </div>
             </b-col>
         </b-row>

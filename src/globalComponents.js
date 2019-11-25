@@ -21,6 +21,7 @@ import CT_DISPLAY_SMALL from '@/components/CT_DISPLAY_SMALL.vue'
 import CT_DISPLAY_MEDIUM from '@/components/CT_DISPLAY_MEDIUM.vue'
 import CT_DISPLAY_THREE from '@/components/CT_DISPLAY_THREE.vue'
 import CT_IMAGE from '@/components/CT_IMAGE.vue'
+import CT_CATEGORY_INFO from '@/components/CT_CATEGORY_INFO.vue'
 
 
 export default {
@@ -47,4 +48,5 @@ export default {
     'CT_DISPLAY_MEDIUM': CT_DISPLAY_MEDIUM,
     'CT_DISPLAY_THREE': CT_DISPLAY_THREE,
     'CT_IMAGE': CT_IMAGE,
+    'CT_CATEGORY_INFO': CT_CATEGORY_INFO
 }

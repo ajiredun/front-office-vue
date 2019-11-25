@@ -105,6 +105,9 @@ export default {
             } else {
                 return ''
             }
+        },
+        frontOfficeUrl() {
+            return this.$store.state.frontOfficeUrl
         }
     },
     mounted() {

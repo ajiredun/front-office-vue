@@ -185,6 +185,7 @@
         .rf-link-menu {
             width:100%;
             text-align: left;
+            box-shadow: 0px 0px 12px grey;
         }
         .dropdown-menu {
             border:0;

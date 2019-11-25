@@ -12,7 +12,7 @@
                          :style="{ 'background-image':  'url(' + image01 + ')' ,'height': adv_height }"
                     ></div>
                     </a>
-                    <b-img v-else fluid-grow blank-color="#777" :src="image01"></b-img>
+                    <b-img-lazy v-else fluid-grow blank-color="#777" :src="image01"></b-img-lazy>
                     <a v-if="image01Url" class="btn btn-outline-dark btn-link-slider" :href="image01Url"
                        style="margin-top:-150px;">{{image01UrlText}}</a>
                 </div>
@@ -25,7 +25,7 @@
                              :style="{ 'background-image':  'url(' + image02 + ')' ,'height': adv_height }"
                         ></div>
                     </a>
-                    <b-img v-else fluid-grow blank-color="#777" :src="image02"></b-img>
+                    <b-img-lazy v-else fluid-grow blank-color="#777" :src="image02"></b-img-lazy>
                     <a v-if="image02Url" class="btn btn-outline-dark btn-link-slider" :href="image02Url"
                        style="margin-top:-150px;">{{image02UrlText}}</a>
                 </div>
